@@ -8,9 +8,9 @@ No es una presentación sobre toma de decisiones. Es un entorno para tomarlas.
 
 ## Estado del proyecto
 
-Versión candidata disponible: `7.2.1-rc1`
+Versión candidata disponible: `7.3.0`
 
-El repositorio contiene un prototipo experimental destinado a docencia, prueba y mejora iterativa. La versión actual conserva el núcleo operativo de UMBRAL 7.0.0 e incorpora una portada común que separa dos experiencias independientes:
+El repositorio contiene un prototipo experimental destinado a docencia, prueba y mejora iterativa. Experiencias incluidas:
 
 - **Simulación ASTER-7**, con cuenta atrás y consecuencias operativas.
 - **Perfil psicométrico**, sin límite de tiempo y con registro ascendente del tiempo empleado.
@@ -193,10 +193,6 @@ Las propuestas de cambio deben conservar tres invariantes: el archivo seguirá s
 
 ## Autoría
 
-Diseño, concepto y desarrollo: **Manuel Hernández González**.
+Diseño, concepto y desarrollo: **Manuel Hernández**.
 
-UMBRAL es un artefacto académico experimental en evolución. Su valor no depende de acumular funciones, sino de conservar una relación verificable entre decisión, consecuencia y aprendizaje.
-
-## Licencia
-
-Este repositorio necesita incorporar un archivo `LICENSE` antes de definir condiciones de reutilización, modificación o distribución. Hasta entonces, la publicación del código no implica por sí sola la concesión de una licencia de uso.
+UMBRAL es un artefacto académico experimental en evolución.

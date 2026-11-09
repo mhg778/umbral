@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="app-version" content="7.2.1-rc1">
+    <meta name="app-version" content="7.3.0">
     <meta name="evolution" content="Portal de acceso separado para simulador y perfil psicométrico">
-    <title>UMBRAL 2118 - Simulador experimental [DUAL 7.2.1-rc1]</title>
+    <title>UMBRAL - Simulador de perfilado humano experimental [7.3.0]</title>
     <style>
         :root {
             --bg-void: #050811;
@@ -22,7 +22,7 @@
             --text-muted: #8295b5;
             --border: #263859;
             --font-sans: Arial, sans-serif;
-            --font-mono: Arial, sans-serif;
+            --font-mono: ui-monospace,"Cascadia Mono","Segoe UI Mono","Roboto Mono",Consolas,monospace;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
@@ -885,6 +885,29 @@
             .portal-meta { padding-top:7px; }
             .portal-meta span { font-size:.64rem; padding:2px 6px; }
         }
+
+        .module-switch { min-height:28px; }
+        .profile-nav { display:flex; gap:7px; align-items:center; }
+        #profile-print-report { display:none; }
+        @media print {
+            body.profile-print-ready > :not(#profile-print-report) { display:none !important; }
+            body.profile-print-ready #profile-print-report { display:block !important; color:#111; background:#fff; font:10.5pt/1.4 Arial,sans-serif; }
+            #profile-print-report h1 { font-size:17pt; margin:0 0 5mm; }
+            #profile-print-report h2 { font-size:12pt; margin:7mm 0 3mm; break-after:avoid; }
+            #profile-print-report table { width:100%; border-collapse:collapse; }
+            #profile-print-report th, #profile-print-report td { border:.5pt solid #888; padding:4pt 6pt; text-align:left; }
+            #profile-print-report .profile-print-meta { margin-bottom:6mm; }
+        }
+        @media(max-width:760px){ .profile-nav{width:100%;justify-content:flex-end}.module-switch{padding:6px 7px} }
+
+        #dual-standalone{display:none;position:fixed;inset:0;z-index:2950;overflow:auto;background:radial-gradient(circle at 15% 0,rgba(0,205,255,.12),transparent 38%),#050811;color:var(--text-primary)}
+        body.mode-dual #dual-standalone{display:block}body.mode-dual .app-shell{display:none}body.mode-dual #entry-portal{display:none}
+        .portal-choice.dual{background:linear-gradient(135deg,rgba(8,65,70,.9),rgba(8,17,34,.82))}.dual-main{max-width:1000px;margin:auto;padding:22px}.dual-intro,.dual-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:10px;padding:17px;margin-bottom:12px}.dual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.dual-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.dual-status{font-weight:800;color:var(--scene-accent)}.dual-bars{display:grid;grid-template-columns:1fr auto;gap:5px 10px;margin:12px 0}.dual-bar{height:7px;background:var(--bg-void);border-radius:8px;overflow:hidden}.dual-bar span{display:block;height:100%;background:var(--accent-cyan)}.dual-bar.observed span{background:#f0a6ff}.dual-evidence{font-size:.82rem;color:var(--text-secondary);line-height:1.45}.dual-warning{font-size:.82rem;color:var(--warn-amber)}
+        @media(max-width:760px){.dual-grid{grid-template-columns:1fr}.dual-main{padding:12px}.portal-choices{grid-template-columns:1fr}}
+
+        .quick-doc{position:fixed;inset:0;z-index:3200;padding:18px;background:rgba(3,6,14,.88);display:flex;align-items:center;justify-content:center}.quick-doc-card{width:min(980px,100%);max-height:92dvh;overflow:hidden;background:var(--bg-panel);border:1px solid var(--accent-cyan);border-radius:10px;display:flex;flex-direction:column}.quick-doc-head{display:flex;justify-content:space-between;align-items:center;padding:10px 13px;border-bottom:1px solid var(--border)}.quick-doc-tabs{display:flex;gap:6px;padding:8px;overflow-x:auto}.quick-doc-tabs button{flex:0 0 auto;background:var(--bg-card);color:var(--text-primary);border:1px solid var(--border);border-radius:5px;padding:7px 9px;cursor:pointer}.quick-doc-tabs button[aria-pressed="true"]{border-color:var(--accent-cyan);color:var(--accent-cyan)}.quick-doc-body{overflow:auto;padding:14px 18px}.quick-doc-body .doc-paper{max-width:none}.quick-doc.hidden{display:none!important}
+        code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.pill-ok{font-family:var(--font-mono)}
+        @media(max-width:600px){.quick-doc{padding:0}.quick-doc-card{height:100dvh;max-height:none;border-radius:0}.quick-doc-body{padding:10px}.quick-doc-tabs{padding:6px}}
     </style>
 </head>
 <body>
@@ -896,11 +919,13 @@
     <div class="portal-choices">
       <button type="button" class="portal-choice game" onclick="launchGame()"><span class="choice-index">01</span><h2>PMO ASTER-7</h2><p>Centro de operaciones, documentación, decisiones, WBS y retos cognitivos dentro de una misión contrarreloj.</p><div class="portal-meta"><span>25 o 50 min</span><span>Cuenta atrás</span><span>Resultado operativo</span></div></button>
       <button type="button" class="portal-choice profile" onclick="launchProfile()"><span class="choice-index">02</span><h2>Perfil psicométrico</h2><p>Autoinforme independiente en cuatro bloques. Sin límite de tiempo y sin interferencia del cronómetro de la misión.</p><div class="portal-meta"><span>24 ítems</span><span>Tiempo abierto</span><span>Informe de perfil</span></div></button>
+      <button id="dual-entry" type="button" class="portal-choice dual hidden" onclick="launchDual()"><span class="choice-index">03</span><h2>Contraste Dual</h2><p>Compara el autoinforme con cuatro grupos de evidencias observadas en ASTER-7.</p><div class="portal-meta"><span>Declarado vs. observado</span><span>Exportación unificada</span></div></button>
     </div>
   </div>
 </div>
+<div id="dual-standalone" aria-label="Contraste Dual UMBRAL"><header class="profile-topbar"><div class="profile-topbar-brand"><strong>UMBRAL/CONTRASTE</strong><small>Declarado frente a observado</small></div><div class="profile-nav"><button class="profile-exit" type="button" onclick="downloadDualJSON()">Exportar JSON</button><button class="profile-exit" type="button" onclick="returnToPortal()">Portal</button></div></header><main class="dual-main" id="dual-report"></main></div>
 <div id="profile-standalone" aria-label="Test psicométrico UMBRAL">
-  <header class="profile-topbar"><div class="profile-topbar-brand"><strong>UMBRAL/PERFIL</strong><small>Test psicométrico experimental</small></div><div><small style="display:block;text-align:center;color:var(--text-muted)">TIEMPO EMPLEADO</small><div id="profile-elapsed" class="profile-elapsed">00:00:00</div></div><button class="profile-exit" type="button" onclick="returnToPortal()">Salir al portal</button></header>
+  <header class="profile-topbar"><div class="profile-topbar-brand"><strong>UMBRAL/PERFIL</strong><small>Test psicométrico experimental</small></div><div><small style="display:block;text-align:center;color:var(--text-muted)">TIEMPO EMPLEADO</small><div id="profile-elapsed" class="profile-elapsed">00:00:00</div></div><div class="profile-nav"><button class="profile-exit" type="button" onclick="launchGame()">Simulación</button><button class="profile-exit" type="button" onclick="returnToPortal()">Portal</button></div></header>
   <div class="profile-wrapper"><div class="profile-shell" id="profile-box" tabindex="-1" role="region" aria-label="Módulo de perfil psicométrico"></div></div>
 </div>
 <div class="app-shell">
@@ -913,7 +938,7 @@
         <div class="brand-block">
             <div class="brand-emblem">U7</div>
             <div class="brand-titles">
-                <h1>UMBRAL 2118 // ASTER-7 (PROTOTIPO 7.2.1-rc1)</h1>
+                <h1>UMBRAL 2118 // ASTER-7 (PROTOTIPO 7.3.0)</h1>
                 <div class="brand-sub">Consorcio Umbral | Marco: <strong id="hud-method">Pendiente</strong></div>
             </div>
         </div>
@@ -933,6 +958,9 @@
         </div>
 
         <div class="hud-right">
+            <button type="button" class="hud-btn module-switch" onclick="returnToPortal()">Portal</button>
+            <button type="button" class="hud-btn module-switch" onclick="launchProfile()">Perfil</button>
+            <button type="button" class="hud-btn module-switch" onclick="openQuickDoc(1)">Docs</button>
             <span id="appearance-main-slot"></span>
             <div class="reading-tools" role="group" aria-label="Tamaño de letra"><label for="reading-size" title="Tamaño de letra">Aa</label><select id="reading-size" class="reading-size-select" aria-label="Tamaño de letra" onchange="setReadingSize(this.value)"><option value="small">Pequeña</option><option value="medium" selected>Mediana</option><option value="large">Grande</option></select></div>
             <button id="pause-control" class="hud-btn pause-trigger" type="button" onclick="pauseAssessment()" disabled>Pausar</button>
@@ -1076,8 +1104,10 @@
         </div>
     </div>
 
-    <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 </div>
+    <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+<article id="profile-print-report" aria-hidden="true"></article>
+<div id="quick-doc" class="quick-doc hidden" role="dialog" aria-modal="true" aria-labelledby="quick-doc-title"><div class="quick-doc-card"><div class="quick-doc-head"><strong id="quick-doc-title">Consulta rápida</strong><button type="button" class="hud-btn" onclick="closeQuickDoc()">Cerrar</button></div><div class="quick-doc-tabs" role="group" aria-label="Documentos de consulta"><button onclick="openQuickDoc(1)">DOC-01</button><button onclick="openQuickDoc(2)">DOC-02</button><button onclick="openQuickDoc(3)">DOC-03</button><button onclick="openQuickDoc(4)">DOC-04</button><button onclick="openQuickDoc(5)">DOC-05</button></div><div id="quick-doc-body" class="quick-doc-body"></div></div></div>
 
 <script>// CIERRE2: aleatorización reproducible, no mecanismo de seguridad.
 function createSessionRandom(seed) {
@@ -3312,13 +3342,12 @@ function toggleMode() {
 }
 
 function notifyToast(msg, ok) {
-    if (state.isFinished || state.isPaused) return;
     const t = document.getElementById('toast');
     t.style.borderLeftColor = ok ? 'var(--accent-cyan)' : 'var(--alert-red)';
     t.innerText = msg;
     t.classList.remove('hidden');
-    SessionTimers.cancelTimeout(window.tTimer);
-    window.tTimer = SessionTimers.timeout(() => t.classList.add('hidden'), 4500);
+    if(window.tTimer) clearTimeout(window.tTimer);
+    window.tTimer=setTimeout(()=>t.classList.add('hidden'),4500);
 }
 
 function switchView(v) {
@@ -3343,6 +3372,12 @@ function closeMobileReader() {
     }
 }
 
+const QuickDocUI={focusBefore:null,current:1};
+function openQuickDoc(n){
+ if(state.isFinished||state.isPaused)return;const d=normativeDocs[n];if(!d)return;QuickDocUI.focusBefore=document.activeElement;QuickDocUI.current=n;state.docsRead.add(n);const box=document.getElementById('quick-doc');document.getElementById('quick-doc-title').textContent=d.title;document.getElementById('quick-doc-body').innerHTML='<div class="doc-paper"><span class="doc-ref">'+d.ref+'</span>'+d.content+'</div>';box.querySelectorAll('.quick-doc-tabs button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i+1===n)));box.classList.remove('hidden');box.querySelector('.quick-doc-head button').focus({preventScroll:true});
+}
+function closeQuickDoc(){const box=document.getElementById('quick-doc');box.classList.add('hidden');if(QuickDocUI.focusBefore&&QuickDocUI.focusBefore.isConnected)QuickDocUI.focusBefore.focus({preventScroll:true});}
+function quickDocKey(e){if(e.key==='Escape'&&!document.getElementById('quick-doc').classList.contains('hidden')){e.preventDefault();closeQuickDoc();}}
 function showDoc(n) {
     if (state.isFinished || state.isPaused) return;
     if (!syncMainClock()) return;
@@ -3491,6 +3526,7 @@ function resolveMail(id, idx) {
     const opt = m.balancedOpts && m.balancedOpts[idx];
     if (!opt) return;
     const keys = ['A', 'B', 'C', 'D'];
+    if ((opt.costReserve || opt.triggerRework) && !confirm('Esta decisión es irreversible' + (opt.costReserve ? ' y consumirá ' + opt.costReserve.toLocaleString('es-ES') + ' Cr. de la reserva' : '') + (opt.triggerRework ? '. Puede generar retrabajo causal' : '') + '. ¿Confirmar la opción ' + keys[idx] + '?')) return;
 
     if (opt.requiresModules && (!state.wbsCompleted || state.speedStage < 4)) {
         SoundEngine.error();
@@ -3651,6 +3687,7 @@ function resolveCrisisModal(opt, letter, crisisId) {
 }
 
 function openClosingModal() {
+    if (!confirm('Finalizar el turno cerrará el resultado de la simulación. ¿Continuar?')) return;
     if (state.isPaused) return;
     if (state.isFinished) {
         renderFinalAudit();
@@ -3824,8 +3861,8 @@ function finalizeSessionOnce(reason = 'manual', opt = null, letter = null) {
     const observations = SessionTrace.seal();
     const auditLog = state.auditLog.map(entry => Object.freeze({ ...entry }));
     state.finalSnapshot = Object.freeze({
-        appVersion: '7.0.0',
-        resultSchemaVersion: '2.2.0',
+        appVersion: APP.version,
+        resultSchemaVersion: APP.schemaVersion,
         observations,
         randomization: Object.freeze({ seed: SessionRandom.seed, algorithm: SessionRandom.algorithm, policy: 'balanced-24-no-three-identical-in-a-row' }),
         timing: buildTimingSnapshot(),
@@ -3847,6 +3884,7 @@ function finalizeSessionOnce(reason = 'manual', opt = null, letter = null) {
         letterStats: Object.freeze({ ...letterStats }),
         auditLog: Object.freeze(auditLog)
     });
+    UMBRALSession.game.status='finished'; UMBRALSession.game.snapshot=state.finalSnapshot; syncDualAvailability();
     return state.finalSnapshot;
 }
 
@@ -3905,6 +3943,7 @@ function renderFinalAudit() {
             <button id="download-json-control" type="button" class="hud-btn" style="font-size:0.9rem; white-space:normal; opacity:.45; cursor:not-allowed;" onclick="downloadTechnicalJSON()" disabled>Guardar datos técnicos (JSON)</button>
             <p id="technical-export-status" role="status" aria-live="polite" style="margin-top:8px;">Activa la opción anterior si quieres descargar el detalle técnico.</p>
         </details>
+        ${DualContrast.ready()?'<button type="button" class="btn-finish" onclick="launchDual()">Abrir Contraste Dual</button>':''}
         ${epilogueMarkup()}
         ${projectGuideMarkup('result-project-guide')}
     `;
@@ -4439,7 +4478,8 @@ function downloadTechnicalJSON() {
     }
 }
 
-const ReleaseInfo = Object.freeze({ application: 'UMBRAL 2118', appVersion: '7.0.0', instrument: 'legacy-experimental-core16', status: 'prototype-not-validated' });
+const APP = Object.freeze({ name:'UMBRAL 2118', version:'7.3.0', schemaVersion:'3.0.0' });
+const ReleaseInfo = Object.freeze({ application: APP.name, appVersion: APP.version, instrument: 'legacy-experimental-core16', status: 'prototype-not-validated' });
 const NarrativeUI = { ending: null };
 const OriginalEndings = Object.freeze({
     shared: { title: 'Custodia compartida', text: 'El archivo del turno queda bajo custodia de los equipos. Cada discrepancia conserva su procedencia y un responsable de revisión.' },
@@ -4494,19 +4534,49 @@ function readingControlMarkup() {
    UMBRAL/PERFIL 7.1 RC1 - autoinforme experimental desacoplado del núcleo
    ============================================================================ */
 
+const UMBRALSession = {
+  activeModule:'portal',
+  game:{ status:'not-started', snapshot:null },
+  profile:{ status:'not-started', snapshot:null },
+  dual:null
+};
 const UMBRALMode = { current:'portal' };
+function setActiveModule(module){ UMBRALMode.current=module; UMBRALSession.activeModule=module; document.body.className=module==='portal'?'':'mode-'+module; }
 function launchGame(){
-  UMBRALMode.current='game'; document.body.className='mode-game'; initSetup();
+  if(UMBRALMode.current==='profile') UMBRALProfile.suspendClock();
+  setActiveModule('game');
+  if(!state.setupInitialized && !state.sessionStarted && !state.isFinished) initSetup();
+  else if(state.isFinished) renderFinalAudit();
 }
 function launchProfile(){
-  UMBRALMode.current='profile'; document.body.className='mode-profile';
-  UMBRALProfile.render(); UMBRALProfile.startClock();
+  if(state.sessionStarted && !state.isFinished && !state.isPaused) pauseAssessment('module-switch');
+  setActiveModule('profile'); UMBRALSession.profile.status='in-progress';
+  UMBRALProfile.render(); UMBRALProfile.resumeClock();
   requestAnimationFrame(()=>document.getElementById('profile-box').focus({preventScroll:true}));
 }
 function returnToPortal(){
-  if(UMBRALMode.current==='profile') UMBRALProfile.stopClock();
-  UMBRALMode.current='portal'; document.body.className='';
+  if(UMBRALMode.current==='profile') UMBRALProfile.suspendClock();
+  if(UMBRALMode.current==='game' && state.sessionStarted && !state.isFinished && !state.isPaused) pauseAssessment('module-switch');
+  setActiveModule('portal');
 }
+const DualContrast = (()=>{
+ const names={risk:'Evaluación de riesgos',planning:'Planificación adaptativa',quality:'Control de calidad',pressure:'Regulación bajo presión'};
+ const map={
+  risk:{declared:'risk',rules:[['C02','Decisión de calendario y TEMPEST'],['C03','Contención técnica y HPS'],['C05','Respuesta forense'],['NO-REWORK','Ausencia de retrabajo causal']]},
+  planning:{declared:'planning',rules:[['C02','Planificación logística'],['C04','Control del alcance'],['WBS','Validación WBS'],['TRIAGE','Priorización inicial']]},
+  quality:{declared:'quality',rules:[['C03','Configuración certificada'],['C06','Cumplimiento SRS'],['C07','Trazabilidad AQAP'],['COG','Retos completados sin fallos']]},
+  pressure:{declared:'pressure',rules:[['CRISIS-1','Primera crisis'],['CRISIS-2','Segunda crisis'],['PING-1','Primer aviso en vivo'],['PING-2','Segundo aviso en vivo']]}
+ };
+ function ready(){return !!(state.finalSnapshot&&UMBRALSession.profile.snapshot);}
+ function audit(){return state.finalSnapshot&&Array.isArray(state.finalSnapshot.auditLog)?state.finalSnapshot.auditLog:[];}
+ function rule(id){const a=audit();if(id==='NO-REWORK')return {ok:state.finalSnapshot.reworkCount===0,seen:true};if(id==='WBS')return {ok:a.some(e=>/WBS VALIDADA/.test(e.text)),seen:a.some(e=>/WBS/.test(e.text))};if(id==='TRIAGE')return {ok:a.some(e=>e.type==='OPTIMAL'&&/TRIAGE/.test(e.text)),seen:a.some(e=>/TRIAGE/.test(e.text))};if(id==='COG')return {ok:state.finalSnapshot.speedStage===4&&state.finalSnapshot.speedMistakes===0,seen:state.finalSnapshot.speedStage>0};const token='['+id+']';const entries=a.filter(e=>String(e.text).includes(token)||String(e.text).includes(id+' '));return {ok:entries.some(e=>e.type==='OPTIMAL'),seen:entries.length>0};}
+ function build(){if(!ready())return null;const profile=UMBRALSession.profile.snapshot,game=state.finalSnapshot,dims={};Object.entries(map).forEach(([id,cfg])=>{const declared=profile.scores[cfg.declared]?.percent??null,ev=cfg.rules.map(([key,label])=>({key,label,...rule(key)})),seen=ev.filter(x=>x.seen),observed=seen.length?Math.round(seen.filter(x=>x.ok).length/seen.length*100):null,diff=declared!==null&&observed!==null?Math.abs(declared-observed):null,status=seen.length<2?'Evidencia insuficiente':diff<=20?'Convergencia':'Tensión';dims[id]={name:names[id],declared,observed,difference:diff,status,evidence:ev};});return {appVersion:APP.version,schemaVersion:'UMBRAL-DUAL-1.0',generatedAt:new Date().toISOString(),method:'rule-based-descriptive-contrast',warning:'Comparación pedagógica experimental; no valida constructos, sinceridad ni aptitud.',profile,game,dimensions:dims};}
+ function render(){const data=build(),box=document.getElementById('dual-report');if(!data){box.innerHTML='<section class="dual-intro"><h1>Contraste no disponible</h1><p>Deben completarse la simulación y el perfil en esta sesión.</p></section>';return;}UMBRALSession.dual=data;box.innerHTML='<section class="dual-intro"><span class="tag-pill">CONTRASTE DUAL EXPERIMENTAL</span><h1>Lo declarado y lo observado</h1><p>La comparación aplica reglas explícitas sobre cuatro dimensiones. Una tensión no implica incoherencia: puede proceder del contexto o de evidencia limitada.</p><p class="dual-warning">'+data.warning+'</p></section><div class="dual-grid">'+Object.values(data.dimensions).map(d=>'<article class="dual-card"><div class="dual-head"><h2>'+d.name+'</h2><span class="dual-status">'+d.status+'</span></div><div class="dual-bars"><span>Declarado</span><strong>'+(d.declared??'N/D')+'</strong><div class="dual-bar"><span style="width:'+(d.declared??0)+'%"></span></div><span></span><span>Observado</span><strong>'+(d.observed??'N/D')+'</strong><div class="dual-bar observed"><span style="width:'+(d.observed??0)+'%"></span></div><span></span></div><div class="dual-evidence">'+d.evidence.map(e=>(e.ok?'✓ ':e.seen?'· ':'? ')+e.label).join('<br>')+'</div></article>').join('')+'</div>';}
+ return {ready,build,render};
+})();
+function syncDualAvailability(){const el=document.getElementById('dual-entry');if(el)el.classList.toggle('hidden',!DualContrast.ready());}
+function launchDual(){if(!DualContrast.ready()){notifyToast('Completa primero la simulación y el perfil.',false);return;}UMBRALProfile.suspendClock();setActiveModule('dual');DualContrast.render();}
+function downloadDualJSON(){const data=DualContrast.build();if(!data)return;const blob=new Blob([JSON.stringify(data,null,2)+'\n'],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='UMBRAL_DUAL_v'+APP.version+'_contraste.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
 const UMBRALProfile = (() => {
     const blocks = [
         { id:'thought', title:'Pensamiento', subtitle:'Análisis y decisión' },
@@ -4541,14 +4611,18 @@ const UMBRALProfile = (() => {
         {id:'A06',b:'action',d:'quality',p:'inverse',t:'Cuando el plazo es corto, omito comprobaciones aunque el error sea difícil de revertir.'}
     ];
     const labels=['Nada de acuerdo','Poco de acuerdo','Ni de acuerdo ni en desacuerdo','Bastante de acuerdo','Muy de acuerdo'];
-    const stateP={ active:0, responses:{}, completed:new Set(), generated:false, startedAt:null, elapsedMs:0, timerId:null };
+    const stateP={ active:0, responses:{}, completed:new Set(), generated:false, startedAt:null, elapsedMs:0, timerId:null, visibilityPauseCount:0, focusItem:null, focusValue:null, scrollTop:0 };
     const dimensionNames={analysis:'Análisis estructurado',risk:'Evaluación de riesgos',adaptation:'Adaptabilidad',pressure:'Regulación bajo presión',learning:'Aprendizaje aplicado',understanding:'Comprensión interpersonal',cooperation:'Cooperación autónoma',planning:'Planificación adaptativa',quality:'Control de calidad'};
     const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     function elapsed(){ return stateP.startedAt===null ? stateP.elapsedMs : stateP.elapsedMs+(performance.now()-stateP.startedAt); }
     function timeText(ms){ const sec=Math.floor(ms/1000),h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60; return [h,m,s].map(x=>String(x).padStart(2,'0')).join(':'); }
     function tick(){ const el=document.getElementById('profile-elapsed'); if(el) el.textContent=timeText(elapsed()); }
-    function startClock(){ if(stateP.startedAt!==null)return; stateP.startedAt=performance.now(); stateP.timerId=setInterval(tick,250); tick(); }
-    function stopClock(){ if(stateP.startedAt!==null){stateP.elapsedMs+=performance.now()-stateP.startedAt;stateP.startedAt=null;} if(stateP.timerId){clearInterval(stateP.timerId);stateP.timerId=null;} tick(); }
+    function canRunClock(){ return UMBRALMode.current==='profile' && !document.hidden && !stateP.generated; }
+    function resumeClock(){ if(!canRunClock()||stateP.startedAt!==null)return; stateP.startedAt=performance.now(); stateP.timerId=setInterval(tick,250); tick(); }
+    function suspendClock(){ if(stateP.startedAt!==null){stateP.elapsedMs+=performance.now()-stateP.startedAt;stateP.startedAt=null;} if(stateP.timerId){clearInterval(stateP.timerId);stateP.timerId=null;} tick(); }
+    function startClock(){ resumeClock(); }
+    function stopClock(){ suspendClock(); }
+    function handleVisibility(){ if(document.hidden){if(stateP.startedAt!==null)stateP.visibilityPauseCount++;suspendClock();}else resumeClock(); }
     function score(it,v){ if(it.p==='inverse') return 6-v; if(it.p==='ideal3') return Math.max(1,5-Math.abs(v-3)*2); return v; }
     function blockDone(id){ return items.filter(x=>x.b===id).every(x=>stateP.responses[x.id]); }
     function sync(){
@@ -4564,28 +4638,39 @@ const UMBRALProfile = (() => {
         <div class="profile-blocks">${blocks.map((x,i)=>`<button type="button" class="profile-block${i===stateP.active?' active':''}${stateP.completed.has(x.id)?' done':''}" onclick="UMBRALProfile.openBlock(${i})"><strong>${i+1}. ${x.title}</strong><small>${x.subtitle} · ${items.filter(y=>y.b===x.id&&stateP.responses[y.id]).length}/6</small></button>`).join('')}</div>
         <section class="profile-panel"><span class="tag-pill">BLOQUE ${stateP.active+1}/4</span><h2>${block.title}</h2>${its.map(itemMarkup).join('')}<div class="profile-actions"><button type="button" class="profile-secondary" onclick="UMBRALProfile.prev()" ${stateP.active===0?'disabled':''}>← Anterior</button><button type="button" class="btn-finish" onclick="UMBRALProfile.next()">${stateP.active===3?'Generar perfil':'Siguiente bloque →'}</button></div></section>`;
     }
-    function itemMarkup(it,idx){ const chosen=stateP.responses[it.id]; return `<article class="profile-item"><div class="profile-item-head"><span>${it.id}</span><span>${idx+1}/6</span></div><p class="profile-statement">${esc(it.t)}</p><div class="profile-scale" role="radiogroup" aria-label="${esc(it.t)}">${labels.map((lab,i)=>`<button type="button" class="profile-answer${chosen===i+1?' selected':''}" role="radio" aria-checked="${chosen===i+1}" onclick="UMBRALProfile.answer('${it.id}',${i+1})"><strong>${i+1}</strong>${lab}</button>`).join('')}</div></article>`; }
-    function answer(id,v){ if(state.isFinished||state.isPaused) return; stateP.responses[id]=v; SessionTrace.response('PROFILE-'+id,'self-report',v,{module:'UMBRAL-PERFIL-1.0'}); sync(); render(); }
+    function itemMarkup(it,idx){ const chosen=stateP.responses[it.id]; return `<article class="profile-item"><div class="profile-item-head"><span>${it.id}</span><span>${idx+1}/6</span></div><p class="profile-statement">${esc(it.t)}</p><div class="profile-scale" role="radiogroup" aria-label="${esc(it.t)}">${labels.map((lab,i)=>`<button type="button" class="profile-answer${chosen===i+1?' selected':''}" role="radio" data-profile-item="${it.id}" data-profile-value="${i+1}" aria-checked="${chosen===i+1}" onclick="UMBRALProfile.answer('${it.id}',${i+1})"><strong>${i+1}</strong>${lab}</button>`).join('')}</div></article>`; }
+    function answer(id,v){ stateP.focusItem=id; stateP.focusValue=v; const host=document.getElementById('profile-standalone'); stateP.scrollTop=host?host.scrollTop:0; stateP.responses[id]=v; if(SessionTrace.startedAt!==null&&!SessionTrace.sealed) SessionTrace.response('PROFILE-'+id,'self-report',v,{module:'UMBRAL-PERFIL-1.0'}); sync(); render(); requestAnimationFrame(()=>{const target=document.querySelector('[data-profile-item="'+id+'"][data-profile-value="'+v+'"]');if(host)host.scrollTop=stateP.scrollTop;if(target)target.focus({preventScroll:true});}); }
     function openBlock(i){ stateP.active=Math.max(0,Math.min(3,i)); render(); document.getElementById('profile-box').focus({preventScroll:true}); }
-    function next(){ const current=blocks[stateP.active]; if(!blockDone(current.id)){ notifyToast('Completa las seis respuestas de este bloque.',false); return; } if(stateP.active<3){stateP.active++;render();}else{stopClock();stateP.generated=true;SessionTrace.event('profile.generated',{answered:Object.keys(stateP.responses).length});render();} }
+    function next(){ const current=blocks[stateP.active]; if(!blockDone(current.id)){ notifyToast('Completa las seis respuestas de este bloque.',false); return; } if(stateP.active<3){stateP.active++;render();}else{suspendClock();stateP.generated=true;UMBRALSession.profile.status='finished';UMBRALSession.profile.snapshot=snapshot();syncDualAvailability();SessionTrace.event('profile.generated',{answered:Object.keys(stateP.responses).length});render();} }
     function prev(){ if(stateP.active>0){stateP.active--;render();} }
     function calc(){ const map={}; items.forEach(it=>{const v=stateP.responses[it.id];if(!v)return;(map[it.d]??=[]).push(score(it,v));}); const out={}; Object.entries(map).forEach(([d,a])=>{const mean=a.reduce((x,y)=>x+y,0)/a.length;out[d]={mean,percent:Math.round((mean-1)/4*100),count:a.length};}); return out; }
     function level(p){ return p>=82?'Muy alto':p>=67?'Alto':p>=48?'Medio-alto':p>=33?'Medio':'Bajo'; }
-    function resultsMarkup(answered,pct){ const scores=calc(); const sorted=Object.entries(scores).sort((a,b)=>b[1].percent-a[1].percent); const high=sorted.slice(0,3).map(x=>dimensionNames[x[0]]).join(', '); const watch=sorted.slice(-2).map(x=>dimensionNames[x[0]]).join(' y '); return `<section class="profile-hero"><div><p class="profile-kicker">UMBRAL/PERFIL · RESULTADO EXPERIMENTAL</p><h2>Mapa conductual de misión</h2><p class="profile-note">Patrón dominante: ${esc(high)}. Contraste recomendado: ${esc(watch)}.</p></div><div class="profile-progress"><strong>${pct}%</strong><span>cobertura · ${timeText(elapsed())} empleados</span><small style="display:block;margin-top:5px;color:var(--text-muted)">Dato temporal contrafactual: se registra, pero no modifica el perfil.</small></div></section><section class="profile-panel"><div class="profile-results-grid">${sorted.map(([d,o])=>`<article class="profile-result"><div class="profile-result-top"><strong>${dimensionNames[d]}</strong><span class="profile-level">${level(o.percent)}</span></div><div class="profile-mini"><span style="width:${o.percent}%"></span></div><p class="profile-note">Índice experimental ${o.percent}/100 · ${o.count} evidencias</p></article>`).join('')}</div><div class="profile-actions"><button type="button" class="profile-secondary" onclick="UMBRALProfile.edit()">Revisar respuestas</button><button type="button" class="profile-secondary" onclick="UMBRALProfile.download()">Exportar perfil</button><button type="button" class="btn-finish" onclick="window.print()">Imprimir resultado</button></div></section>`; }
+    function resultsMarkup(answered,pct){ const scores=calc(); const sorted=Object.entries(scores).sort((a,b)=>b[1].percent-a[1].percent); const high=sorted.slice(0,3).map(x=>dimensionNames[x[0]]).join(', '); const watch=sorted.slice(-2).map(x=>dimensionNames[x[0]]).join(' y '); return `<section class="profile-hero"><div><p class="profile-kicker">UMBRAL/PERFIL · RESULTADO EXPERIMENTAL</p><h2>Mapa conductual de misión</h2><p class="profile-note">Patrón dominante: ${esc(high)}. Contraste recomendado: ${esc(watch)}.</p></div><div class="profile-progress"><strong>${pct}%</strong><span>cobertura · ${timeText(elapsed())} empleados</span><small style="display:block;margin-top:5px;color:var(--text-muted)">Dato temporal contrafactual: se registra, pero no modifica el perfil.</small></div></section><section class="profile-panel"><div class="profile-results-grid">${sorted.map(([d,o])=>`<article class="profile-result"><div class="profile-result-top"><strong>${dimensionNames[d]}</strong><span class="profile-level">${level(o.percent)}</span></div><div class="profile-mini"><span style="width:${o.percent}%"></span></div><p class="profile-note">Índice experimental ${o.percent}/100 · ${o.count} evidencias</p></article>`).join('')}</div><div class="profile-actions"><button type="button" class="profile-secondary" onclick="UMBRALProfile.edit()">Revisar respuestas</button><button type="button" class="profile-secondary" onclick="UMBRALProfile.download()">Exportar perfil</button>${DualContrast.ready()?'<button type="button" class="profile-secondary" onclick="launchDual()">Contraste Dual</button>':''}<button type="button" class="btn-finish" onclick="UMBRALProfile.printReport()">Imprimir resultado</button></div></section>`; }
     function edit(){stateP.generated=false;render();}
-    function snapshot(){return {schemaVersion:'UMBRAL-PERFIL-1.0',generatedAt:new Date().toISOString(),elapsedMilliseconds:Math.round(elapsed()),elapsedTime:timeText(elapsed()),responses:{...stateP.responses},scores:calc(),blocksCompleted:[...stateP.completed]};}
-    function download(){const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='UMBRAL_PERFIL_resultado.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
-    return {render,answer,openBlock,next,prev,edit,download,snapshot,startClock,stopClock,timeText};
+    function snapshot(){return {appVersion:APP.version,schemaVersion:APP.schemaVersion,profileSchemaVersion:'UMBRAL-PERFIL-1.1',generatedAt:new Date().toISOString(),elapsedActiveMilliseconds:Math.round(elapsed()),elapsedActiveTime:timeText(elapsed()),visibilityPauseCount:stateP.visibilityPauseCount,timingMeaning:'active-visible-time',responses:{...stateP.responses},scores:calc(),blocksCompleted:[...stateP.completed]};}
+
+    function printReport(){
+      if(!stateP.generated)return false;
+      suspendClock(); const snap=snapshot(), scores=snap.scores, report=document.getElementById('profile-print-report');
+      report.innerHTML='<h1>UMBRAL/PERFIL</h1><p class="profile-print-meta">Versión '+APP.version+' · '+new Date(snap.generatedAt).toLocaleString('es-ES')+' · Tiempo activo '+snap.elapsedActiveTime+'</p><h2>Dimensiones</h2><table><thead><tr><th>Dimensión</th><th>Índice</th><th>Evidencias</th></tr></thead><tbody>'+Object.entries(scores).map(([id,o])=>'<tr><th>'+dimensionNames[id]+'</th><td>'+o.percent+'/100</td><td>'+o.count+'</td></tr>').join('')+'</tbody></table><h2>Cobertura</h2><p>'+Object.keys(snap.responses).length+' de '+items.length+' respuestas. Pausas por pérdida de visibilidad: '+snap.visibilityPauseCount+'. El tiempo registrado es tiempo activo visible y no modifica el perfil.</p>';
+      report.setAttribute('aria-hidden','false'); document.body.classList.add('profile-print-ready');
+      const clean=()=>{document.body.classList.remove('profile-print-ready');report.setAttribute('aria-hidden','true');window.removeEventListener('afterprint',clean);};
+      window.addEventListener('afterprint',clean); window.print(); return true;
+    }
+    function download(){const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='UMBRAL_PERFIL_v'+APP.version+'_resultado.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+    return {render,answer,openBlock,next,prev,edit,download,snapshot,startClock,stopClock,resumeClock,suspendClock,handleVisibility,printReport,timeText};
 })();
 
 document.addEventListener('visibilitychange', handleAssessmentVisibility);
+document.addEventListener('visibilitychange', UMBRALProfile.handleVisibility);
 document.addEventListener('keydown', handleSpeedGridKeys);
+document.addEventListener('keydown', quickDocKey);
 document.addEventListener('keydown', handleAssessmentDialogKey, true);
 document.addEventListener('focusin', confineAssessmentDialogFocus, true);
 window.addEventListener('beforeprint', rememberAssessmentDialogPrintFocus, true);
 window.addEventListener('afterprint', restoreAssessmentDialogAfterPrint);
 
-window.onload = () => { initializeAppearance(); UMBRALProfile.render(); document.body.className=''; };
+window.onload = () => { document.querySelector('meta[name=app-version]').content=APP.version; initializeAppearance(); UMBRALProfile.render(); syncDualAvailability(); setActiveModule('portal'); };
 </script>
 
 <section id="pause-overlay" class="pause-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pause-title" aria-describedby="pause-description" onkeydown="handlePauseKey(event)">

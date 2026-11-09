@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="app-version" content="7.3.0">
-    <meta name="evolution" content="Acceso separado para simulador y perfil psicométrico">
-    <title>UMBRAL - Simulador de perfilado humano experimental [7.3.0]</title>
+    <meta name="evolution" content="Portal de acceso separado para simulador y perfil psicométrico">
+    <title>UMBRAL - Simulador de perfilado humano experimental [DUAL 7.3.0]</title>
     <style>
         :root {
             --bg-void: #050811;
@@ -908,6 +908,8 @@
         .quick-doc{position:fixed;inset:0;z-index:3200;padding:18px;background:rgba(3,6,14,.88);display:flex;align-items:center;justify-content:center}.quick-doc-card{width:min(980px,100%);max-height:92dvh;overflow:hidden;background:var(--bg-panel);border:1px solid var(--accent-cyan);border-radius:10px;display:flex;flex-direction:column}.quick-doc-head{display:flex;justify-content:space-between;align-items:center;padding:10px 13px;border-bottom:1px solid var(--border)}.quick-doc-tabs{display:flex;gap:6px;padding:8px;overflow-x:auto}.quick-doc-tabs button{flex:0 0 auto;background:var(--bg-card);color:var(--text-primary);border:1px solid var(--border);border-radius:5px;padding:7px 9px;cursor:pointer}.quick-doc-tabs button[aria-pressed="true"]{border-color:var(--accent-cyan);color:var(--accent-cyan)}.quick-doc-body{overflow:auto;padding:14px 18px}.quick-doc-body .doc-paper{max-width:none}.quick-doc.hidden{display:none!important}
         code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.pill-ok{font-family:var(--font-mono)}
         @media(max-width:600px){.quick-doc{padding:0}.quick-doc-card{height:100dvh;max-height:none;border-radius:0}.quick-doc-body{padding:10px}.quick-doc-tabs{padding:6px}}
+
+        #dual-print-report{display:none}@media print{body.dual-print-ready>:not(#dual-print-report){display:none!important}body.dual-print-ready #dual-print-report{display:block!important;color:#111;background:#fff;font:10.5pt/1.4 Arial,sans-serif}#dual-print-report h1{font-size:17pt}#dual-print-report table{width:100%;border-collapse:collapse}#dual-print-report th,#dual-print-report td{border:.5pt solid #888;padding:5pt;text-align:left}}
     </style>
 </head>
 <body>
@@ -923,7 +925,7 @@
     </div>
   </div>
 </div>
-<div id="dual-standalone" aria-label="Contraste Dual UMBRAL"><header class="profile-topbar"><div class="profile-topbar-brand"><strong>UMBRAL/CONTRASTE</strong><small>Declarado frente a observado</small></div><div class="profile-nav"><button class="profile-exit" type="button" onclick="downloadDualJSON()">Exportar JSON</button><button class="profile-exit" type="button" onclick="returnToPortal()">Portal</button></div></header><main class="dual-main" id="dual-report"></main></div>
+<div id="dual-standalone" aria-label="Contraste Dual UMBRAL"><header class="profile-topbar"><div class="profile-topbar-brand"><strong>UMBRAL/CONTRASTE</strong><small>Declarado frente a observado</small></div><div class="profile-nav"><button class="profile-exit" type="button" onclick="launchGame()">Simulación</button><button class="profile-exit" type="button" onclick="launchProfile()">Perfil</button><button class="profile-exit" type="button" onclick="printDualReport()">Imprimir</button><button class="profile-exit" type="button" onclick="downloadDualJSON()">JSON</button><button class="profile-exit" type="button" onclick="returnToPortal()">Portal</button></div></header><main class="dual-main" id="dual-report"></main></div>
 <div id="profile-standalone" aria-label="Test psicométrico UMBRAL">
   <header class="profile-topbar"><div class="profile-topbar-brand"><strong>UMBRAL/PERFIL</strong><small>Test psicométrico experimental</small></div><div><small style="display:block;text-align:center;color:var(--text-muted)">TIEMPO EMPLEADO</small><div id="profile-elapsed" class="profile-elapsed">00:00:00</div></div><div class="profile-nav"><button class="profile-exit" type="button" onclick="launchGame()">Simulación</button><button class="profile-exit" type="button" onclick="returnToPortal()">Portal</button></div></header>
   <div class="profile-wrapper"><div class="profile-shell" id="profile-box" tabindex="-1" role="region" aria-label="Módulo de perfil psicométrico"></div></div>
@@ -1106,7 +1108,7 @@
 
 </div>
     <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-<article id="profile-print-report" aria-hidden="true"></article>
+<article id="profile-print-report" aria-hidden="true"></article><article id="dual-print-report" aria-hidden="true"></article>
 <div id="quick-doc" class="quick-doc hidden" role="dialog" aria-modal="true" aria-labelledby="quick-doc-title"><div class="quick-doc-card"><div class="quick-doc-head"><strong id="quick-doc-title">Consulta rápida</strong><button type="button" class="hud-btn" onclick="closeQuickDoc()">Cerrar</button></div><div class="quick-doc-tabs" role="group" aria-label="Documentos de consulta"><button onclick="openQuickDoc(1)">DOC-01</button><button onclick="openQuickDoc(2)">DOC-02</button><button onclick="openQuickDoc(3)">DOC-03</button><button onclick="openQuickDoc(4)">DOC-04</button><button onclick="openQuickDoc(5)">DOC-05</button></div><div id="quick-doc-body" class="quick-doc-body"></div></div></div>
 
 <script>// CIERRE2: aleatorización reproducible, no mecanismo de seguridad.
@@ -3036,6 +3038,7 @@ function validateWbs() {
 const AssessmentDialogUI = { active: false, context: null, previousFocus: null, previousFocusId: null, background: new Map(), redirecting: false, printFocus: null };
 
 function assessmentDialogIsActive() {
+    if (UMBRALMode.current !== 'game') return false;
     const overlay = document.getElementById('modal-overlay');
     return AssessmentDialogUI.active && !state.isPaused && overlay && !overlay.classList.contains('hidden');
 }
@@ -3372,12 +3375,12 @@ function closeMobileReader() {
     }
 }
 
-const QuickDocUI={focusBefore:null,current:1};
+const QuickDocUI={focusBefore:null,current:1,inert:[]};
 function openQuickDoc(n){
- if(state.isFinished||state.isPaused)return;const d=normativeDocs[n];if(!d)return;QuickDocUI.focusBefore=document.activeElement;QuickDocUI.current=n;state.docsRead.add(n);const box=document.getElementById('quick-doc');document.getElementById('quick-doc-title').textContent=d.title;document.getElementById('quick-doc-body').innerHTML='<div class="doc-paper"><span class="doc-ref">'+d.ref+'</span>'+d.content+'</div>';box.querySelectorAll('.quick-doc-tabs button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i+1===n)));box.classList.remove('hidden');box.querySelector('.quick-doc-head button').focus({preventScroll:true});
+ if(state.isFinished||state.isPaused)return;const d=normativeDocs[n];if(!d)return;QuickDocUI.focusBefore=document.activeElement;QuickDocUI.current=n;state.docsRead.add(n);const box=document.getElementById('quick-doc');document.getElementById('quick-doc-title').textContent=d.title;document.getElementById('quick-doc-body').innerHTML='<div class="doc-paper"><span class="doc-ref">'+d.ref+'</span>'+d.content+'</div>';box.querySelectorAll('.quick-doc-tabs button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i+1===n)));QuickDocUI.inert=[...document.body.children].filter(x=>x!==box&&!x.matches('script,style'));QuickDocUI.inert.forEach(x=>x.inert=true);box.classList.remove('hidden');box.querySelector('.quick-doc-head button').focus({preventScroll:true});
 }
-function closeQuickDoc(){const box=document.getElementById('quick-doc');box.classList.add('hidden');if(QuickDocUI.focusBefore&&QuickDocUI.focusBefore.isConnected)QuickDocUI.focusBefore.focus({preventScroll:true});}
-function quickDocKey(e){if(e.key==='Escape'&&!document.getElementById('quick-doc').classList.contains('hidden')){e.preventDefault();closeQuickDoc();}}
+function closeQuickDoc(){const box=document.getElementById('quick-doc');box.classList.add('hidden');QuickDocUI.inert.forEach(x=>x.inert=false);QuickDocUI.inert=[];if(QuickDocUI.focusBefore&&QuickDocUI.focusBefore.isConnected)QuickDocUI.focusBefore.focus({preventScroll:true});}
+function quickDocKey(e){const box=document.getElementById('quick-doc');if(box.classList.contains('hidden'))return;if(e.key==='Escape'){e.preventDefault();closeQuickDoc();return;}if(e.key==='Tab'){const c=[...box.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled),f=c[0],l=c[c.length-1];if(e.shiftKey&&document.activeElement===f){e.preventDefault();l.focus();}else if(!e.shiftKey&&document.activeElement===l){e.preventDefault();f.focus();}}}
 function showDoc(n) {
     if (state.isFinished || state.isPaused) return;
     if (!syncMainClock()) return;
@@ -3526,7 +3529,7 @@ function resolveMail(id, idx) {
     const opt = m.balancedOpts && m.balancedOpts[idx];
     if (!opt) return;
     const keys = ['A', 'B', 'C', 'D'];
-    if ((opt.costReserve || opt.triggerRework) && !confirm('Esta decisión es irreversible' + (opt.costReserve ? ' y consumirá ' + opt.costReserve.toLocaleString('es-ES') + ' Cr. de la reserva' : '') + (opt.triggerRework ? '. Puede generar retrabajo causal' : '') + '. ¿Confirmar la opción ' + keys[idx] + '?')) return;
+    if (opt.costReserve && !confirm('Esta decisión comprometerá ' + opt.costReserve.toLocaleString('es-ES') + ' Cr. de la reserva. ¿Confirmar la opción ' + keys[idx] + '?')) return;
 
     if (opt.requiresModules && (!state.wbsCompleted || state.speedStage < 4)) {
         SoundEngine.error();
@@ -4292,7 +4295,8 @@ function clearPrintPresentation() {
 }
 
 function prepareClosedPrintReport() {
-    if (!state.isFinished || !state.finalSnapshot) return false;
+    if (UMBRALMode.current !== 'game' || !state.isFinished || !state.finalSnapshot) return false;
+    document.body.classList.remove('profile-print-ready', 'dual-print-ready');
     const report = buildPrintableReport(state.finalSnapshot);
     const previous = document.getElementById('print-report');
     if (previous) previous.remove();
@@ -4541,7 +4545,7 @@ const UMBRALSession = {
   dual:null
 };
 const UMBRALMode = { current:'portal' };
-function setActiveModule(module){ UMBRALMode.current=module; UMBRALSession.activeModule=module; document.body.className=module==='portal'?'':'mode-'+module; }
+function setActiveModule(module){ if(module!=='game'&&AssessmentDialogUI.active)closeAssessmentDialog(); UMBRALMode.current=module; UMBRALSession.activeModule=module; document.body.className=module==='portal'?'':'mode-'+module; }
 function launchGame(){
   if(UMBRALMode.current==='profile') UMBRALProfile.suspendClock();
   setActiveModule('game');
@@ -4569,13 +4573,14 @@ const DualContrast = (()=>{
  };
  function ready(){return !!(state.finalSnapshot&&UMBRALSession.profile.snapshot);}
  function audit(){return state.finalSnapshot&&Array.isArray(state.finalSnapshot.auditLog)?state.finalSnapshot.auditLog:[];}
- function rule(id){const a=audit();if(id==='NO-REWORK')return {ok:state.finalSnapshot.reworkCount===0,seen:true};if(id==='WBS')return {ok:a.some(e=>/WBS VALIDADA/.test(e.text)),seen:a.some(e=>/WBS/.test(e.text))};if(id==='TRIAGE')return {ok:a.some(e=>e.type==='OPTIMAL'&&/TRIAGE/.test(e.text)),seen:a.some(e=>/TRIAGE/.test(e.text))};if(id==='COG')return {ok:state.finalSnapshot.speedStage===4&&state.finalSnapshot.speedMistakes===0,seen:state.finalSnapshot.speedStage>0};const token='['+id+']';const entries=a.filter(e=>String(e.text).includes(token)||String(e.text).includes(id+' '));return {ok:entries.some(e=>e.type==='OPTIMAL'),seen:entries.length>0};}
+ function rule(id){const a=audit();if(id==='NO-REWORK')return {ok:state.finalSnapshot.reworkCount===0,seen:true};if(id==='WBS')return {ok:a.some(e=>/WBS VALIDADA/.test(e.text)),seen:a.some(e=>/WBS/.test(e.text))};if(id==='TRIAGE')return {ok:a.some(e=>e.type==='OPTIMAL'&&/TRIAGE/.test(e.text)),seen:Array.isArray(state.openOrder)&&state.openOrder.length>0};if(id==='COG')return {ok:state.finalSnapshot.speedStage===4&&state.finalSnapshot.speedMistakes===0,seen:state.finalSnapshot.speedStage>0};const token='['+id+']';const entries=a.filter(e=>String(e.text).includes(token)||String(e.text).includes(id+' '));return {ok:entries.some(e=>e.type==='OPTIMAL'),seen:entries.length>0};}
  function build(){if(!ready())return null;const profile=UMBRALSession.profile.snapshot,game=state.finalSnapshot,dims={};Object.entries(map).forEach(([id,cfg])=>{const declared=profile.scores[cfg.declared]?.percent??null,ev=cfg.rules.map(([key,label])=>({key,label,...rule(key)})),seen=ev.filter(x=>x.seen),observed=seen.length?Math.round(seen.filter(x=>x.ok).length/seen.length*100):null,diff=declared!==null&&observed!==null?Math.abs(declared-observed):null,status=seen.length<2?'Evidencia insuficiente':diff<=20?'Convergencia':'Tensión';dims[id]={name:names[id],declared,observed,difference:diff,status,evidence:ev};});return {appVersion:APP.version,schemaVersion:'UMBRAL-DUAL-1.0',generatedAt:new Date().toISOString(),method:'rule-based-descriptive-contrast',warning:'Comparación pedagógica experimental; no valida constructos, sinceridad ni aptitud.',profile,game,dimensions:dims};}
  function render(){const data=build(),box=document.getElementById('dual-report');if(!data){box.innerHTML='<section class="dual-intro"><h1>Contraste no disponible</h1><p>Deben completarse la simulación y el perfil en esta sesión.</p></section>';return;}UMBRALSession.dual=data;box.innerHTML='<section class="dual-intro"><span class="tag-pill">CONTRASTE DUAL EXPERIMENTAL</span><h1>Lo declarado y lo observado</h1><p>La comparación aplica reglas explícitas sobre cuatro dimensiones. Una tensión no implica incoherencia: puede proceder del contexto o de evidencia limitada.</p><p class="dual-warning">'+data.warning+'</p></section><div class="dual-grid">'+Object.values(data.dimensions).map(d=>'<article class="dual-card"><div class="dual-head"><h2>'+d.name+'</h2><span class="dual-status">'+d.status+'</span></div><div class="dual-bars"><span>Declarado</span><strong>'+(d.declared??'N/D')+'</strong><div class="dual-bar"><span style="width:'+(d.declared??0)+'%"></span></div><span></span><span>Observado</span><strong>'+(d.observed??'N/D')+'</strong><div class="dual-bar observed"><span style="width:'+(d.observed??0)+'%"></span></div><span></span></div><div class="dual-evidence">'+d.evidence.map(e=>(e.ok?'✓ ':e.seen?'· ':'? ')+e.label).join('<br>')+'</div></article>').join('')+'</div>';}
  return {ready,build,render};
 })();
 function syncDualAvailability(){const el=document.getElementById('dual-entry');if(el)el.classList.toggle('hidden',!DualContrast.ready());}
 function launchDual(){if(!DualContrast.ready()){notifyToast('Completa primero la simulación y el perfil.',false);return;}UMBRALProfile.suspendClock();setActiveModule('dual');DualContrast.render();}
+function printDualReport(){const data=DualContrast.build();if(!data)return false;const report=document.getElementById('dual-print-report');report.innerHTML='<h1>UMBRAL/CONTRASTE</h1><p>Versión '+APP.version+' · '+new Date(data.generatedAt).toLocaleString('es-ES')+'</p><p>'+data.warning+'</p><table><thead><tr><th>Dimensión</th><th>Declarado</th><th>Observado</th><th>Estado</th></tr></thead><tbody>'+Object.values(data.dimensions).map(d=>'<tr><th>'+d.name+'</th><td>'+d.declared+'</td><td>'+(d.observed??'N/D')+'</td><td>'+d.status+'</td></tr>').join('')+'</tbody></table>';document.body.classList.remove('result-print-ready','profile-print-ready');document.body.classList.add('dual-print-ready');const clean=()=>{document.body.classList.remove('dual-print-ready');window.removeEventListener('afterprint',clean)};window.addEventListener('afterprint',clean);window.print();return true;}
 function downloadDualJSON(){const data=DualContrast.build();if(!data)return;const blob=new Blob([JSON.stringify(data,null,2)+'\n'],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='UMBRAL_DUAL_v'+APP.version+'_contraste.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
 const UMBRALProfile = (() => {
     const blocks = [

@@ -1,3 +1,10 @@
+<p align="center">
+  <img
+    src="assets/umbral.png"
+    alt="UMBRAL — Simular, Analizar, Aprender, Decidir."
+    width="800"
+  />
+
 # UMBRAL
 
 > Un simulador puede producir una puntuación. Eso no significa que haya demostrado lo que esa puntuación parece decir.

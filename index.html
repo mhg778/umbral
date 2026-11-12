@@ -6,7 +6,7 @@
 <meta name="app-version" content="8.0.0-rc13.16">
 <meta name="evolution" content="Portal de acceso separado para simulador y perfil psicométrico">
 <meta name="assessment-status" content="Experimental formative prototype; not validated for personnel selection">
-<meta name="engineering-baseline" content="RC13.16 maintainable editorial v2: readable source formatting; proportional SVG typography; identity block; reduced-motion support">
+<meta name="engineering-baseline" content="RC13.16 maintainable editorial v3: generic three-experience copy; block aligned to UMBRAL 2118; proportional SVG typography; reduced-motion support">
 <title>UMBRAL - Simulador de perfilado humano experimental [TRIPLE 8.0.0-rc13.16]</title>
 <style>
 :root {
@@ -924,7 +924,7 @@ code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.
 
 /* RC13.16 EDITORIAL: identidad visual de portada. */
 .portal-editorial {
-  width: min(560px, 92vw);
+  width: min(510px, 92vw);
   padding: 17px 20px 18px;
   border-left: 1px solid rgba(80, 232, 255, .42);
   background: linear-gradient(90deg, rgba(2, 7, 17, .82), rgba(2, 7, 17, .48) 72%, transparent);
@@ -934,8 +934,8 @@ code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.
 .portal-editorial-rule { display: block; width: 38px; height: 3px; margin: 11px 0 12px; background: #ff3eac; box-shadow: 0 0 12px rgba(255, 62, 172, .55); }
 .portal-editorial h1 { font-size: clamp(1.9rem, 4vw, 3.6rem); letter-spacing: .16em; line-height: 1; margin: 0 0 12px; text-transform: uppercase; }
 .portal-editorial h1 span { letter-spacing: .08em; }
-.portal-editorial .portal-editorial-copy { max-width: 535px; font-size: clamp(.84rem, 1.08vw, .98rem); line-height: 1.55; letter-spacing: .025em; color: #dce8f2; }
-.portal-editorial .portal-editorial-copy strong { font-weight: 700; color: #fff; }
+.portal-editorial .portal-editorial-copy { max-width: 466px; font-size: clamp(.84rem, 1.02vw, .96rem); line-height: 1.55; letter-spacing: .025em; color: #dce8f2; }
+.portal-editorial .portal-editorial-copy strong { display: block; margin-top: 3px; font-weight: 700; color: #fff; }
 @media (max-width: 760px) {
   .portal-editorial { width: 100%; padding: 13px 14px 14px; }
   .portal-editorial .portal-kicker { font-size: .62rem; letter-spacing: .18em; }
@@ -1054,7 +1054,7 @@ code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.
   <p class="portal-kicker">UMBRAL PMO · PERFILADO HUMANO GAMIFICADO</p>
   <span class="portal-editorial-rule" aria-hidden="true"></span>
   <h1>UMBRAL <span>2118</span></h1>
-  <p class="portal-editorial-copy">ASTER-7 ejercicio sobre decisiones en tiempo real. UMBRAL/PERFIL explora cómo la persona describe su forma de trabajar. <strong>Dos perspectivas. Un mismo umbral.</strong></p>
+  <p class="portal-editorial-copy">Tres experiencias para simular, analizar y comprender la toma de decisiones. <strong>Distintos escenarios. Un mismo umbral.</strong></p>
 </div>
 <div class="portal-choices">
 <div id="autosave-recovery" class="hidden" style="grid-column:1/-1;border:1px solid var(--accent-cyan);background:var(--bg-panel);border-radius:9px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><strong>Autoguardado local disponible</strong><p id="autosave-recovery-detail" style="margin-top:3px;color:var(--text-secondary)">Puedes continuar la sesión guardada o iniciar otra experiencia.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="autosave-resume-control" type="button" class="profile-secondary">Continuar sesión</button><button id="autosave-discard-control" type="button" class="profile-secondary">Descartar autoguardado</button></div></div>

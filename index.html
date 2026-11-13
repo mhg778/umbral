@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="app-version" content="8.0.0-rc13.16">
+<meta name="app-version" content="8.0.0-rc13.17-urgent">
 <meta name="evolution" content="Portal de acceso separado para simulador y perfil psicométrico">
 <meta name="assessment-status" content="Experimental formative prototype; not validated for personnel selection">
-<meta name="engineering-baseline" content="RC13.16 maintainable editorial v3: generic three-experience copy; block aligned to UMBRAL 2118; proportional SVG typography; reduced-motion support">
-<title>UMBRAL - Simulador de perfilado humano experimental [TRIPLE 8.0.0-rc13.16]</title>
+<meta name="engineering-baseline" content="RC13.17 urgent: psychometric result repair; simplified retrowave portal; single ambient orbit; pill-free entry cards">
+<title>UMBRAL - Simulador de perfilado humano experimental [TRIPLE 8.0.0-rc13.17-urgent]</title>
 <style>
 :root {
 --bg-void: #050811;
@@ -943,6 +943,83 @@ code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.
   .portal-editorial h1 { font-size: 1.85rem; margin-bottom: 9px; }
   .portal-editorial .portal-editorial-copy { font-size: .8rem; line-height: 1.43; }
 }
+
+/* RC13.17 URGENT: portal retrowave/cyberpunk simplificado, reactivo y sin pills. */
+#entry-portal { background: #020611; }
+.portal-grid { display: none; }
+.portal-art-motion { opacity: .6; contain: strict; }
+.portal-content { gap: 18px; }
+.portal-brand { margin-bottom: 0; }
+.portal-choices { gap: 14px; }
+.portal-choice {
+  min-height: 158px;
+  padding: 19px 20px;
+  border-radius: 12px;
+  transition: transform .16s ease, border-color .16s ease, background-color .16s ease, box-shadow .16s ease;
+}
+.portal-choice::after {
+  content: 'ABRIR  →';
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 15px;
+  color: #8ff7ff;
+  font: 700 .72rem/1 var(--font-mono);
+  letter-spacing: .12em;
+}
+.portal-choice.profile::after { color: #f5a0ff; }
+.portal-choice:hover, .portal-choice:focus-visible {
+  transform: translateY(-2px);
+  border-color: #8ff7ff;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .48), inset 0 0 0 1px rgba(143, 247, 255, .12);
+}
+.portal-choice:active { transform: translateY(0) scale(.995); }
+.portal-choice:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.portal-choice h2 { margin: 11px 0 6px; }
+.portal-choice p { max-width: 42ch; }
+.portal-choice-note {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: auto;
+  padding-top: 13px;
+  color: #aebfd1;
+  font: 600 .74rem/1.35 Arial, sans-serif;
+  letter-spacing: .02em;
+}
+.portal-meta { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .portal-choice { transition: none; }
+  .portal-choice:hover, .portal-choice:focus-visible, .portal-choice:active { transform: none; }
+}
+
+/* RC13.17 URGENT: resumen psicométrico seguro. */
+.profile-summary-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.profile-summary-columns article { padding: 14px; border: 1px solid var(--border); border-radius: 8px; background: rgba(5, 8, 17, .35); }
+.profile-summary-columns h3 { margin-bottom: 9px; font-size: .92rem; color: #fff; }
+.profile-summary-list { list-style: none; margin: 0; padding: 0; }
+.profile-summary-list li { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 7px 0; border-bottom: 1px solid rgba(107, 129, 157, .35); }
+.profile-summary-list li:last-child { border-bottom: 0; }
+.profile-summary-list strong { color: var(--scene-accent); }
+.profile-summary-list small { grid-column: 1 / -1; color: var(--text-muted); }
+@media (max-width: 680px) { .profile-summary-columns { grid-template-columns: 1fr; } }
+
+/* RC13.23 user-centred hierarchy */
+.portal-content{max-width:1120px}.portal-editorial-copy{max-width:420px}.portal-choice p{max-width:28ch}.portal-choice-note{opacity:.72}
+#app .top-hud{min-height:58px}.sidebar .nav-item{padding-top:9px;padding-bottom:9px}.session-monitor p:empty{display:none}.view-pane h2,.view-pane h3{letter-spacing:.01em}.panel-subtitle,.helper-text{max-width:68ch}
+#profile-standalone .profile-hero{padding-top:18px;padding-bottom:14px}#profile-standalone .profile-note{max-width:68ch}#profile-standalone .profile-block small{display:none}#profile-standalone .profile-item-head span:last-child{opacity:.7}.profile-finish-partial{border-color:rgba(255,190,80,.7);color:#ffd89a}.profile-incomplete-warning{border-color:rgba(255,190,80,.55)}
+
+/* RC13.25 alignment + action hierarchy + setup option coding */
+#profile-standalone .profile-actions .profile-generate{order:3;box-shadow:0 0 20px rgba(0,190,255,.23)}#profile-standalone .profile-actions .profile-next{order:2}#profile-standalone .profile-actions button[onclick*="prev"]{order:1}
+.welcome-choice.setup-tone-A{background:linear-gradient(135deg,rgba(0,145,255,.105),rgba(0,145,255,.025))}.welcome-choice.setup-tone-B{background:linear-gradient(135deg,rgba(255,190,40,.095),rgba(255,190,40,.022))}.welcome-choice.setup-tone-C{background:linear-gradient(135deg,rgba(40,205,115,.090),rgba(40,205,115,.020))}.welcome-choice.setup-tone-D{background:linear-gradient(135deg,rgba(220,65,105,.090),rgba(220,65,105,.020))}
+.welcome-choice.setup-tone-A:hover,.welcome-choice.setup-tone-A:focus-visible{border-color:rgba(0,155,255,.65)}.welcome-choice.setup-tone-B:hover,.welcome-choice.setup-tone-B:focus-visible{border-color:rgba(255,195,45,.62)}.welcome-choice.setup-tone-C:hover,.welcome-choice.setup-tone-C:focus-visible{border-color:rgba(45,210,120,.60)}.welcome-choice.setup-tone-D:hover,.welcome-choice.setup-tone-D:focus-visible{border-color:rgba(230,75,115,.60)}
+
+/* RC13.26 exact desktop editorial alignment + methodology colour semantics */
+/* Command-language palette: structure=blue, directive control=red, adaptive/agile=green, improvised/fragmented=amber. */
+.welcome-choice.command-blue{background:linear-gradient(135deg,rgba(20,125,255,.19),rgba(20,125,255,.055));border-color:rgba(60,155,255,.52)}
+.welcome-choice.command-red{background:linear-gradient(135deg,rgba(225,55,90,.17),rgba(225,55,90,.050));border-color:rgba(235,85,115,.48)}
+.welcome-choice.command-green{background:linear-gradient(135deg,rgba(35,195,110,.17),rgba(35,195,110,.048));border-color:rgba(65,215,135,.48)}
+.welcome-choice.command-amber{background:linear-gradient(135deg,rgba(245,175,35,.18),rgba(245,175,35,.050));border-color:rgba(255,195,65,.50)}
 </style>
 </head>
 <body>
@@ -1002,67 +1079,29 @@ code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.
 <g fill="none" stroke="#51e8ff" stroke-opacity=".5"><path d="M27 29h68M27 29v68M997 29h-68M997 29v68M27 547h68M27 547v-68M997 547h-68M997 547v-68"/><path d="M55 146h169M55 156h94M74 193h121M829 156h142M878 166h93"/><circle cx="242" cy="151" r="3" fill="#ff4ccb"/></g>
 <g fill="#dffcff" font-family="Arial,sans-serif" opacity=".88"><text x="58" y="91" font-size="15" letter-spacing="3">SIMULAR · ANALIZAR · APRENDER · DECIDIR</text><text x="58" y="129" font-size="9.5" letter-spacing="2.1" fill="#63e5f6">SISTEMAS COMPLEJOS · EJERCICIOS DE SIMULACIÓN</text><text x="824" y="128" font-size="12" letter-spacing="4">40.4168 N</text><text x="824" y="148" font-size="12" letter-spacing="4">3.7038 W</text><text x="824" y="168" font-size="12" letter-spacing="4">MADRID</text></g>
 </svg>
-<svg class="portal-art-layer portal-art-motion" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576" role="img" aria-labelledby="t d">
-<title id="welcome-motion-t">Capa animada orbital de UMBRAL</title><desc id="welcome-motion-d">Órbitas lentas, satélites, pulsos de red, barrido y partículas sobre fondo transparente</desc>
-<defs>
- <linearGradient id="welcome-motion-og" x2="1"><stop stop-color="#00efff"/><stop offset=".5" stop-color="#6d69ff"/><stop offset="1" stop-color="#ff48ca"/></linearGradient>
- <radialGradient id="welcome-motion-pulse"><stop stop-color="#fff"/><stop offset=".18" stop-color="#9af9ff"/><stop offset=".42" stop-color="#00eaff" stop-opacity=".65"/><stop offset="1" stop-color="#00eaff" stop-opacity="0"/></radialGradient>
- <linearGradient id="welcome-motion-scan" x2="0" y2="1"><stop stop-color="#9bfbff" stop-opacity="0"/><stop offset=".5" stop-color="#9bfbff" stop-opacity=".18"/><stop offset="1" stop-color="#9bfbff" stop-opacity="0"/></linearGradient>
- <filter id="welcome-motion-cg" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
- <filter id="welcome-motion-mg" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
- <path id="welcome-motion-routeA" d="M304 385C357 163 654 69 929 263"/>
- <path id="welcome-motion-routeB" d="M363 216C532 64 879 161 978 409"/>
- <path id="welcome-motion-routeC" d="M412 514C548 614 860 563 976 358"/>
-</defs>
-<style>
- .orbit{transform-box:view-box;transform-origin:676px 354px;fill:none;vector-effect:non-scaling-stroke}
- .o1{animation:spin1 42s linear infinite}.o2{animation:spin2 58s linear infinite reverse}.o3{animation:spin1 76s linear infinite}
-  .node{transform-box:fill-box;transform-origin:center;animation:pulse 3.4s ease-out infinite}.n2{animation-delay:-1.1s}.n3{animation-delay:-2.2s}
- .scan{animation:scan 9s ease-in-out infinite}.twinkle{animation:twinkle 4.6s ease-in-out infinite}.t2{animation-delay:-1.4s}.t3{animation-delay:-3.1s}
- @keyframes spin1{to{transform:rotate(360deg)}}@keyframes spin2{to{transform:rotate(360deg)}}
-  @keyframes pulse{0%{transform:scale(.5);opacity:0}22%{opacity:1}70%,100%{transform:scale(2.2);opacity:0}}
- @keyframes scan{0%,100%{transform:translateY(-210px);opacity:0}15%{opacity:.7}85%{opacity:.5}95%{transform:translateY(235px);opacity:0}}
- @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
- @media (prefers-reduced-motion:reduce){.orbit,.node,.scan,.twinkle{animation:none!important}.motion-particle{display:none}.orbit{opacity:.35}.node{opacity:.45;transform:scale(1)}}
-</style>
-<!-- rotating orbit geometry -->
-<g opacity=".9">
- <ellipse class="orbit o1" cx="676" cy="354" rx="371" ry="137" transform="rotate(-15 676 354)" stroke="#ff4aca" stroke-width="2.2"/>
- <ellipse class="orbit o2" cx="676" cy="354" rx="345" ry="178" transform="rotate(14 676 354)" stroke="#20eaff" stroke-width="1.4" stroke-dasharray="2 7 20 10"/>
- <ellipse class="orbit o3" cx="676" cy="354" rx="320" ry="236" transform="rotate(-32 676 354)" stroke="#716cff" stroke-width="1.1" stroke-dasharray="40 12 3 10"/>
-</g>
-<!-- animated particles following routes -->
-<g class="motion-particle" filter="url(#welcome-motion-cg)">
- <circle r="4" fill="#c9ffff"><animateMotion dur="10s" repeatCount="indefinite" rotate="auto"><mpath href="#welcome-motion-routeA"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="10s" repeatCount="indefinite"/></circle>
- <circle r="3.5" fill="#ff78db"><animateMotion dur="13s" begin="-5s" repeatCount="indefinite" rotate="auto"><mpath href="#welcome-motion-routeB"/></animateMotion><animate attributeName="opacity" values="0;1;.75;0" dur="13s" begin="-5s" repeatCount="indefinite"/></circle>
- <circle r="3" fill="#76eaff"><animateMotion dur="16s" begin="-9s" repeatCount="indefinite" rotate="auto"><mpath href="#welcome-motion-routeC"/></animateMotion><animate attributeName="opacity" values="0;.8;1;0" dur="16s" begin="-9s" repeatCount="indefinite"/></circle>
-</g>
-<!-- satellites with subtle drift -->
-<g transform="translate(485 146) rotate(25)" stroke="#91f4ff" fill="#07172b" stroke-width="2" filter="url(#welcome-motion-cg)"><g><animateTransform attributeName="transform" type="translate" values="-2 0;2 -1;-2 0" dur="8s" repeatCount="indefinite"/><animateTransform attributeName="transform" additive="sum" type="rotate" values="-1;1;-1" dur="10s" repeatCount="indefinite"/><rect x="-14" y="-7" width="28" height="14"/><path d="M-14-3h-35v6h35M14-3h35v6H14M0-7v-18m-6 0h12"/></g></g>
-<g transform="translate(907 213) rotate(-20)" stroke="#91f4ff" fill="#07172b" stroke-width="2" filter="url(#welcome-motion-cg)"><g><animateTransform attributeName="transform" type="translate" values="1 -1;-2 1;1 -1" dur="11s" repeatCount="indefinite"/><animateTransform attributeName="transform" additive="sum" type="rotate" values="1;-1;1" dur="13s" repeatCount="indefinite"/><rect x="-12" y="-7" width="24" height="14"/><path d="M-12-3h-32v6h32M12-3h32v6H12M0-7v-18"/></g></g>
-<g transform="translate(793 82) rotate(12)" stroke="#91f4ff" fill="#07172b" stroke-width="2" filter="url(#welcome-motion-cg)"><g><animateTransform attributeName="transform" type="translate" values="-1 1;2 -1;-1 1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" additive="sum" type="rotate" values="-.8;.8;-.8" dur="16s" repeatCount="indefinite"/><rect x="-10" y="-6" width="20" height="12"/><path d="M-10-3h-26v6h26M10-3h26v6H10"/></g></g>
-<!-- network pulses -->
-<g filter="url(#welcome-motion-mg)"><circle class="node" cx="542" cy="430" r="16" fill="none" stroke="#ff4aca" stroke-width="2"/><circle class="node n2" cx="870" cy="271" r="14" fill="none" stroke="#20eaff" stroke-width="2"/><circle class="node n3" cx="706" cy="191" r="12" fill="none" stroke="#9efbff" stroke-width="2"/></g>
-<!-- slow horizon scan, clipped visually by transparency -->
-<rect class="scan" x="395" y="145" width="563" height="42" fill="url(#welcome-motion-scan)" opacity=".58"/>
-<!-- small twinkles -->
-<g fill="url(#welcome-motion-pulse)" filter="url(#welcome-motion-cg)"><circle class="twinkle" cx="570" cy="247" r="7"/><circle class="twinkle t2" cx="723" cy="356" r="7"/><circle class="twinkle t3" cx="799" cy="333" r="6"/><circle class="twinkle t2" cx="641" cy="226" r="6"/><circle class="twinkle t3" cx="844" cy="272" r="6"/></g>
+<svg class="portal-art-layer portal-art-motion" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576" aria-hidden="true" focusable="false">
+  <style>
+    .urgent-orbit { transform-box: view-box; transform-origin: 676px 354px; animation: urgent-orbit-spin 72s linear infinite; }
+    @keyframes urgent-orbit-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .urgent-orbit { animation: none; } }
+  </style>
+  <ellipse class="urgent-orbit" cx="676" cy="354" rx="371" ry="137" transform="rotate(-15 676 354)" fill="none" stroke="#ff4aca" stroke-width="1.45" stroke-opacity=".58" vector-effect="non-scaling-stroke"/>
 </svg>
-</div><div class="portal-grid" aria-hidden="true"></div>
+</div>
 <div class="portal-content">
 <div class="portal-brand portal-editorial">
-  <p class="portal-kicker">UMBRAL PMO · PERFILADO HUMANO GAMIFICADO</p>
+  <p class="portal-kicker">UMBRAL · SIMULACIÓN Y PERFIL</p>
   <span class="portal-editorial-rule" aria-hidden="true"></span>
   <h1>UMBRAL <span>2118</span></h1>
-  <p class="portal-editorial-copy">Tres experiencias para simular, analizar y comprender la toma de decisiones. <strong>Distintos escenarios. Un mismo umbral.</strong></p>
+  <p class="portal-editorial-copy">Elige una experiencia.</p>
 </div>
 <div class="portal-choices">
 <div id="autosave-recovery" class="hidden" style="grid-column:1/-1;border:1px solid var(--accent-cyan);background:var(--bg-panel);border-radius:9px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><strong>Autoguardado local disponible</strong><p id="autosave-recovery-detail" style="margin-top:3px;color:var(--text-secondary)">Puedes continuar la sesión guardada o iniciar otra experiencia.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="autosave-resume-control" type="button" class="profile-secondary">Continuar sesión</button><button id="autosave-discard-control" type="button" class="profile-secondary">Descartar autoguardado</button></div></div>
 
-<button type="button" class="portal-choice game" onclick="launchScenario('aster7')"><span class="choice-index">01</span><h2>PMO ASTER-7</h2><p>Centro de operaciones, documentación, decisiones, WBS y retos cognitivos dentro de una misión contrarreloj.</p><div class="portal-meta"><span>25 o 50 min</span><span>Cuenta atrás</span><span>Resultado operativo</span></div></button>
-<button type="button" class="portal-choice argos5" onclick="launchScenario('argos5')"><span class="choice-index">02</span><h2>DIRECCIÓN Y GESTIÓN DE PROYECTOS GDP-5</h2><p>Dirige el primer despliegue de una estación científica itinerante mediante un enfoque predictivo, ágil o híbrido.</p><div class="portal-meta"><span>Proyecto contemporáneo</span><span>25 o 50 min</span><span id="meta-status-argos5">No iniciado</span></div></button>
-<button type="button" class="portal-choice profile" onclick="launchProfile()"><span class="choice-index">03</span><h2>Perfil psicométrico</h2><p>Autoinforme independiente en cuatro bloques. Sin límite de tiempo y sin interferencia del cronómetro de la misión.</p><div class="portal-meta"><span>82 interacciones</span><span>Tiempo abierto</span><span>Informe de perfil</span></div></button>
-<button id="dual-entry" type="button" class="portal-choice dual hidden" onclick="launchDual()"><span class="choice-index">04</span><h2>Contraste Dual</h2><p>Compara el autoinforme con cuatro grupos de evidencias observadas en ASTER-7.</p><div class="portal-meta"><span>Autodescripción vs. observado</span><span>Exportación unificada</span></div></button>
+<button type="button" class="portal-choice game" onclick="launchScenario('aster7')" aria-describedby="portal-note-aster7"><span class="choice-index">01</span><h2>ASTER-7 PMO</h2><p>Decide y prioriza bajo presión.</p><small id="portal-note-aster7" class="portal-choice-note">25 o 50 minutos</small></button>
+<button type="button" class="portal-choice argos5" onclick="launchScenario('argos5')" aria-describedby="portal-note-argos5"><span class="choice-index">02</span><h2>GDP-5 · Gestión de proyectos</h2><p>Gestiona un proyecto con restricciones reales.</p><small id="portal-note-argos5" class="portal-choice-note">25 o 50 minutos</small></button>
+<button type="button" class="portal-choice profile" onclick="launchProfile()" aria-describedby="portal-note-profile"><span class="choice-index">03</span><h2>Perfil psicométrico</h2><p>Explora tu forma de trabajar.</p><small id="portal-note-profile" class="portal-choice-note">Sin límite de tiempo</small></button>
+<button id="dual-entry" type="button" class="portal-choice dual hidden" onclick="launchDual()"><span class="choice-index">04</span><h2>Contraste Dual</h2><p>Contrasta autodescripción y evidencias observadas en las simulaciones completadas.</p><small class="portal-choice-note">Disponible después de completar evidencias</small></button>
 </div>
 </div>
 </div>
@@ -1081,7 +1120,7 @@ code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.
 <div class="brand-block">
 <div class="brand-emblem">U7</div>
 <div class="brand-titles">
-<h1>UMBRAL 2118 // ASTER-7 (PROTOTIPO 8.0.0-rc13.16)</h1>
+<h1>UMBRAL 2118 // ASTER-7 (PROTOTIPO 8.0.0-rc13.17-urgent)</h1>
 <div class="brand-sub">Consorcio Umbral | Marco: <strong id="hud-method">Pendiente</strong></div>
 </div>
 </div>
@@ -1129,23 +1168,23 @@ code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.
 <span class="role-tag">5 Docs</span>
 </button>
 <button class="nav-item" id="nav-wbs" onclick="switchView('wbs')" type="button" aria-controls="view-wbs" aria-pressed="false">
-<span class="nav-label"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v5M5 13v-3h14v3M5 17v4M19 17v4"/><rect x="8" y="3" width="8" height="5" rx="1"/><rect x="1" y="13" width="8" height="5" rx="1"/><rect x="15" y="13" width="8" height="5" rx="1"/></svg>Asignación de recursos</span>
+<span class="nav-label"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v5M5 13v-3h14v3M5 17v4M19 17v4"/><rect x="8" y="3" width="8" height="5" rx="1"/><rect x="1" y="13" width="8" height="5" rx="1"/><rect x="15" y="13" width="8" height="5" rx="1"/></svg>Recursos</span>
 <span class="pill-count" id="badge-wbs">Pend.</span>
 </button>
 <button class="nav-item" id="nav-speed" onclick="switchView('speed')" type="button" aria-controls="view-speed" aria-pressed="false">
-<span class="nav-label"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4 5 8v8l4 4M15 4l4 4v8l-4 4M9 8l6 4-6 4M12 3v18"/></svg>Psicotécnicos</span>
+<span class="nav-label"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4 5 8v8l4 4M15 4l4 4v8l-4 4M9 8l6 4-6 4M12 3v18"/></svg>Retos</span>
 <span class="pill-count" id="badge-speed">0/4</span>
 </button>
 <div class="ascii-radar session-monitor" aria-label="Progreso operativo del núcleo">
-<div class="monitor-title"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2 8.5 5v10L12 22l-8.5-5V7zM8 8l8 8M16 8l-8 8"/><circle cx="12" cy="12" r="3"/></svg><span>Control de sesión</span></div>
+<div class="monitor-title"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2 8.5 5v10L12 22l-8.5-5V7zM8 8l8 8M16 8l-8 8"/><circle cx="12" cy="12" r="3"/></svg><span>Progreso</span></div>
 <div id="core-progress-meter" role="progressbar" aria-label="Unidades del núcleo completadas" aria-valuemin="0" aria-valuemax="16" aria-valuenow="0">
 <svg class="progress-vector" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="progress-track" cx="20" cy="20" r="15.9155"/><circle id="core-progress-stroke" cx="20" cy="20" r="15.9155" pathLength="100" stroke-dasharray="0 100"/></svg>
-<div><span id="core-progress-label">0 / 16</span><small>Unidades completadas</small></div>
+<div><span id="core-progress-label">0 / 16</span><small>Completado</small></div>
 </div>
-<p>No es una estimación de competencias.</p>
+<p></p>
 </div>
 
-<button class="btn-finish" onclick="openClosingModal()">Finalizar Turno</button>
+<button class="btn-finish" onclick="openClosingModal()">Finalizar</button>
 </nav>
 
 <!-- VIEW 1: INBOX WITH MASTER-DETAIL & VOICE CARDS -->
@@ -1240,7 +1279,7 @@ code,.clock-display,.subtimer-clock,.kpi-locked,.doc-ref,.role-tag,.pill-count,.
 <span class="timing-choice-meta">Ampliada ×2 · Retos 100 s · Avisos 50 s</span>
 </button>
 </div>
-<p id="timing-profile-note" role="status" aria-live="polite">Elige antes de iniciar. No hay equivalencia validada entre modalidades.</p>
+<p id="timing-profile-note" role="status" aria-live="polite">Elige la duración antes de iniciar.</p>
 </div>
 <p class="welcome-step-label welcome-only">2. Elige cómo coordinar el programa</p>
 <div class="opt-stack" id="modal-opts"></div>
@@ -2262,7 +2301,7 @@ audit: 'DESASTRE DE GESTIÓN [C08].'
 {
 id: 'C09',
 from: 'Auditoría Técnica de Salida (Oficina de Certificación ONS)',
-subject: 'REQUISITO DE CIERRE: Validación de Asignación de recursos y de los 4 Retos cognitivos',
+subject: 'REQUISITO DE CIERRE: Validación de Recursos y de los 4 Retos cognitivos',
 category: 'Certificación Final',
 priorityRank: 1,
 voiceCard: {
@@ -2270,9 +2309,9 @@ name: "Consola Auditora ONS",
 role: "Verificación Funcional y Cognitiva",
 hps: "SECRETO VIGENTE",
 tone: "Algorítmica.",
-bias: "🔒 Exige completar las pestañas [🧩 Asignación de recursos] y [🧠 Psicotécnicos (4/4)]."
+bias: "🔒 Exige completar las pestañas [🧩 Recursos] y [🧠 Retos (4/4)]."
 },
-body: `Director,\n\nPara sellar el expediente de salida del programa ASTER-7 es obligatorio haber completado las dos pruebas funcionales e interactivas del simulador:\n1. Pestaña [🧩 Asignación de recursos] en estado OK.\n2. Pestaña [🧠 Psicotécnicos] con los 4 retos cognitivos superados (4/4).\n\nCompleta ambos antes de firmar este correo.`,
+body: `Director,\n\nPara sellar el expediente de salida del programa ASTER-7 es obligatorio haber completado las dos pruebas funcionales e interactivas del simulador:\n1. Pestaña [🧩 Recursos] en estado OK.\n2. Pestaña [🧠 Retos] con los 4 retos cognitivos superados (4/4).\n\nCompleta ambos antes de firmar este correo.`,
 options: [
 {
 type: 'OPTIMAL',
@@ -2322,7 +2361,7 @@ badge.className = 'pill-ok';
 box.innerHTML = `
 ${uiIcon('speed','module-mark')}<span class="tag-pill" style="background:var(--ok-green); color:#050811;">BATERÍA PSICOTÉCNICA DELTA 4/4 COMPLETADA</span>
 <h2 style="color:#fff; margin:10px 0;">Código de finalización (no criptográfico): <code>UMBRAL-COG-4OF4-DONE</code></h2>
-<p style="color:var(--text-secondary);">Has superado las 4 pruebas aptitudinales (Memoria de secuencia, Comparación perceptiva, Enrutamiento espacial y Matriz inductiva abstracta). Ya puedes cerrar el correo <strong>[C09]</strong> si tienes validada la Asignación de recursos.</p>
+<p style="color:var(--text-secondary);">Has superado las 4 pruebas aptitudinales (Memoria de secuencia, Comparación perceptiva, Enrutamiento espacial y Matriz inductiva abstracta). Ya puedes cerrar el correo <strong>[C09]</strong> si tienes validada la Recursos.</p>
 `;
 restoreSpeedFocus(focusId);
 return;
@@ -3058,15 +3097,15 @@ ${uiIcon('wbs','module-mark')}<span class="tag-pill">PLANIFICACIÓN FUNCIONAL //
 <td>
 <select id="wbs-s1" class="wbs-select" aria-label="WBS-1, sellado de blindaje RF y TEMPEST: especialista asignado">
 <option value="">-- Seleccionar Especialista --</option>
-<option value="BASTIDA">Ing. Hugo Bastida (8.900 Cr.)</option>
-<option value="MENDOZA">Dra. Irene Mendoza (11.200 Cr. | HPS Secreto)</option>
+<option value="BASTIDA">Ing. Hugo Bastida</option>
+<option value="MENDOZA">Dra. Irene Mendoza</option>
 <option value="VALLS">Dra. Clara Valls</option>
 </select>
 </td>
 <td>
 <select id="wbs-f1" class="wbs-select" aria-label="WBS-1, sellado de blindaje RF y TEMPEST: vía presupuestaria">
 <option value="">-- Seleccionar Firma --</option>
-<option value="AUTO">Firma Autónoma PM contra Reserva (&le;12.000 Cr.)</option>
+<option value="AUTO">Firma del Director de Proyecto contra Reserva</option>
 <option value="MARGEN">Imputar al margen operativo</option>
 </select>
 </td>
@@ -3077,14 +3116,14 @@ ${uiIcon('wbs','module-mark')}<span class="tag-pill">PLANIFICACIÓN FUNCIONAL //
 <select id="wbs-s2" class="wbs-select" aria-label="WBS-2, volcado forense de RAM y restauración SNAP-CLEAN-08: especialista asignado">
 <option value="">-- Seleccionar Especialista --</option>
 <option value="KRANZ">Dr. Dieter Kranz</option>
-<option value="SALGADO">Ing. Marcos Salgado (Plantilla 0 Cr. | 55% Carga | HPS Secreto)</option>
+<option value="SALGADO">Ing. Marcos Salgado</option>
 <option value="MONTESINOS">Lic. Álvaro Montesinos</option>
 </select>
 </td>
 <td>
 <select id="wbs-f2" class="wbs-select" aria-label="WBS-2, volcado forense de RAM y restauración SNAP-CLEAN-08: vía presupuestaria">
 <option value="">-- Seleccionar Firma --</option>
-<option value="INTERNO">Capacidad Interna de Plantilla (0 Cr.)</option>
+<option value="INTERNO">Capacidad interna de plantilla</option>
 <option value="SOLITARIO">Tramitar orden de 15.500 Cr.</option>
 </select>
 </td>
@@ -3110,7 +3149,7 @@ ${uiIcon('wbs','module-mark')}<span class="tag-pill">PLANIFICACIÓN FUNCIONAL //
 </table>
 </div>
 
-<button class="btn-finish" style="width:100%" onclick="validateWbs()">✓ Validar y Sellar Asignación de recursos</button>
+<button class="btn-finish" style="width:100%" onclick="validateWbs()">✓ Validar y Sellar Recursos</button>
 `;
 }
 
@@ -3138,12 +3177,12 @@ const b = document.getElementById('badge-wbs');
 b.innerText = 'OK'; b.className = 'pill-ok';
 SoundEngine.success();
 state.auditLog.push({ type: 'OPTIMAL', text: 'MATRIZ FUNCIONAL WBS VALIDADA AL 100%.' });
-notifyToast('✓ Asignación de recursos sellada correctamente.', true);
+notifyToast('✓ Recursos sellada correctamente.', true);
 renderWbsModule();
 } else {
 SoundEngine.error();
 applyPenalty(-4, -4, -3, 0, 'ERROR EN MATRIZ WBS (-4% Calidad, -4% Margen, -3% Plazos): Revisa HPS en DOC-02 y topes en DOC-03.', 'DISTRACTOR');
-notifyToast('❌ Configuración incorrecta en la Asignación de recursos.', false);
+notifyToast('❌ Configuración incorrecta en la Recursos.', false);
 }
 }
 
@@ -3342,7 +3381,7 @@ win.innerHTML=`${readingControlMarkup()}<span class="tag-pill" id="modal-tag"></
 <span class="timing-choice-meta">Ampliada ×2 · Retos 100 s · Avisos 50 s</span>
 </button>
 </div>
-<p id="timing-profile-note" role="status" aria-live="polite">Elige antes de iniciar. No hay equivalencia validada entre modalidades.</p>
+<p id="timing-profile-note" role="status" aria-live="polite">Elige la duración antes de iniciar.</p>
 </div><div class="opt-stack" id="modal-opts"></div>`;return true;
 }
 function initSetup() {
@@ -3392,7 +3431,7 @@ document.getElementById('modal-desc').innerText = 'Primero elige el tiempo; desp
 
 const keys = ['A', 'B', 'C', 'D'];
 document.getElementById('modal-opts').innerHTML = opts.map((o, i) => `
-<button id="setup-choice-${keys[i]}" type="button" class="opt-card welcome-choice" aria-labelledby="setup-title-${keys[i]}" aria-describedby="setup-copy-${keys[i]}" onclick='startSimulation(${JSON.stringify(o).replace(/'/g, "&apos;")}, "${keys[i]}")'>
+<button id="setup-choice-${keys[i]}" type="button" class="opt-card welcome-choice ${o.type==='OPTIMAL'?'command-blue':o.type==='STRONG_DISTRACTOR'?'command-red':o.type==='MODERATE'?'command-green':'command-amber'}" aria-labelledby="setup-title-${keys[i]}" aria-describedby="setup-copy-${keys[i]}" onclick='startSimulation(${JSON.stringify(o).replace(/'/g, "&apos;")}, "${keys[i]}")'>
 <span class="welcome-choice-head">
 <span class="welcome-choice-key" aria-hidden="true">${keys[i]}</span>
 <span id="setup-title-${keys[i]}" class="welcome-choice-title">Opción ${keys[i]} · ${o.mName}</span>
@@ -3673,7 +3712,7 @@ if (!opt) return;
 const keys = ['A', 'B', 'C', 'D'];
 if (opt.requiresModules && (!state.wbsCompleted || state.speedStage < 4)) {
 SoundEngine.error();
-notifyToast('⚠️ BLOQUEO ONS: Completa antes la [🧩 Asignación de recursos] y los [🧠 4/4 Psicotécnicos].', false);
+notifyToast('⚠️ BLOQUEO ONS: Completa antes la [🧩 Recursos] y los [🧠 4/4 Retos].', false);
 return;
 }
 
@@ -4014,7 +4053,7 @@ ${evidence.missing.length ? `<p>Pendiente: ${evidence.missing.join(', ')}.</p>` 
 <strong>1. ESTADO DEL ESCENARIO (NO COMPETENCIAS):</strong> CALIDAD (40%): ${snap.qual}% | MARGEN (25%): ${snap.marg}% | PLAZOS (20%): ${snap.time}% | CLIMA (15%): ${snap.team}%<br>
 <span style="color:var(--text-secondary);">Estos valores incluyen omisiones del escenario; no son puntos ganados ni medidas de capacidad personal.</span><br>
 <strong>2. COMPETENCIAS:</strong> No estimables con el modelo actual. Los KPI del escenario no son escalas independientes de tus competencias.<br>
-<strong>3. TELEMETRÍA DE PARTIDA:</strong> Reserva Final: ${snap.reserve.toLocaleString('es-ES')} Cr. | Correos Rework Inyectados: ${snap.reworkCount} | Psicotécnicos: ${snap.speedStage}/4 (${snap.speedMistakes} fallos)<br>
+<strong>3. TELEMETRÍA DE PARTIDA:</strong> Reserva Final: ${snap.reserve.toLocaleString('es-ES')} Cr. | Correos Rework Inyectados: ${snap.reworkCount} | Retos: ${snap.speedStage}/4 (${snap.speedMistakes} fallos)<br>
 <span class="pause-report">Pausas: ${snap.pause.count} (manuales: ${snap.pause.count - snap.pause.automaticCount}, automáticas: ${snap.pause.automaticCount}) | Tiempo en pausa: ${Math.round(snap.pause.milliseconds / 1000)} s (excluido de los cronómetros)</span><br>
 <span style="color:var(--accent-cyan);">[Posiciones óptimas generadas (no aciertos personales) -> A: ${snap.letterStats.A} | B: ${snap.letterStats.B} | C: ${snap.letterStats.C} | D: ${snap.letterStats.D}]</span>
 </div>
@@ -4587,7 +4626,7 @@ syncTechnicalExportControls(false);
 }
 }
 
-const APP = Object.freeze({ name:'UMBRAL', version:'8.0.0-rc13.16', schemaVersion:'4.2.0' });
+const APP = Object.freeze({ name:'UMBRAL', version:'8.0.0-rc13.30-severity-editorial', schemaVersion:'4.2.0' });
 const ReleaseInfo = Object.freeze({ application: APP.name, appVersion: APP.version, instrument: 'legacy-experimental-core16', status: 'prototype-not-validated' });
 const NarrativeUI = { ending: null };
 const OriginalEndings = Object.freeze({
@@ -4646,7 +4685,7 @@ UMBRAL/PERFIL 7.1 RC1 - autoinforme experimental desacoplado del núcleo
 
 
 const ASTER7_ORIGINAL_EMAILS=emailsPool;
-const ASTER7_EXPANDED_EMAILS=[{"id":"C10","from":"Ing. Tomás Rueda","subject":"Discrepancia de especificaciones en giroscopios de M2","category":"Líder Integración Chasis y Telemetría (M3/M4)","priorityRank":2,"mandatory":false,"primaryCompetency":"configuration","competencies":["configuration","quality","compliance"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO VIGENTE","tone":"Pragmático, orientado a cerrar el paquete mecánico sin reabrir ensayos.","bias":"⚠️ SESGO DE CONFIRMACIÓN: Da por válido un certificado del fabricante para evitar repetir el ensayo de impacto."},"body":"Cuatro giroscopios Civ-Pro soportan 30 G, frente a 65 G de Mil-Spec-9. Aunque su deriva es menor, incumplen el umbral mínimo de 50 G del DOC-04. Aceptarlos adelantaría 24 horas el ensamblaje. ¿Autorizas el montaje mixto?","options":[{"type":"OPTIMAL","text":"Rechazar Civ-Pro, exigir Mil-Spec-9 y mantener la trazabilidad aunque se consuma holgura.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C10]: Rechazar Civ-Pro, exigir Mil-Spec-9 y mantener la trazabilidad aunque se consuma holgura."},{"type":"STRONG_DISTRACTOR","text":"Aceptar Civ-Pro en plataformas de reserva por su menor deriva.","dq":-20,"dm":0,"dt":0,"dc":0,"audit":"STRONG_DISTRACTOR [C10]: Aceptar Civ-Pro en plataformas de reserva por su menor deriva."},{"type":"MODERATE","text":"Paralizar M2 y M3 cinco días para rediseñar soportes.","dq":-8,"dm":-4,"dt":-10,"dc":0,"audit":"MODERATE [C10]: Paralizar M2 y M3 cinco días para rediseñar soportes."},{"type":"CRITICAL_BAD","text":"Reetiquetar Civ-Pro como Mil-Spec-9 para superar la inspección.","dq":-35,"dm":-10,"dt":0,"dc":0,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C10]: Reetiquetar Civ-Pro como Mil-Spec-9 para superar la inspección."}]},{"id":"C11","from":"Dra. Clara Valls","subject":"Hot-patch en enlace satelital M3 sin ciclo en V","category":"Arquitecta Jefe IA y Hardware (M1/M2)","priorityRank":2,"mandatory":false,"primaryCompetency":"security","competencies":["security","configuration","quality","change-control"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"SECRETO VIGENTE","tone":"Técnico-analítico, presionada por la saturación del camino crítico.","bias":"⚠️ SESGO DE OPTIMIZACIÓN LOCAL: Busca aliviar M1 degradando una dependencia M3 no validada."},"body":"Para descargar el bus de M1 se propone sustituir AegisComm AES-256 por FastLink AES-128 en M3, reduciendo latencia de 1,7 a 0,9 ms, con la validación disponible. ¿Autorizas el parche?","options":[{"type":"OPTIMAL","text":"Denegar el cambio: degradaría AES-256 y rompería la línea base certificada.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C11]: Denegar el cambio: degradaría AES-256 y rompería la línea base certificada."},{"type":"STRONG_DISTRACTOR","text":"Autorizar AES-128 de forma transitoria para la maniobra.","dq":-22,"dm":0,"dt":0,"dc":0,"audit":"STRONG_DISTRACTOR [C11]: Autorizar AES-128 de forma transitoria para la maniobra."},{"type":"MODERATE","text":"Ordenar turnos dobles para reescribir AegisComm antes del Día 17.","dq":0,"dm":0,"dt":-14,"dc":-8,"audit":"MODERATE [C11]: Ordenar turnos dobles para reescribir AegisComm antes del Día 17."},{"type":"CRITICAL_BAD","text":"Flashear Kernel-9.3-HOT puenteando control de configuración.","dq":-36,"dm":-10,"dt":0,"dc":0,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C11]: Flashear Kernel-9.3-HOT puenteando control de configuración."}]},{"id":"C12","from":"Comandante R. Valdivia","subject":"Presión para suprimir la firma presencial ONS","category":"Oficial de Enlace de Flota","priorityRank":2,"mandatory":false,"primaryCompetency":"compliance","competencies":["compliance","planning","contract"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO VIGENTE","tone":"Imperativo, centrado en la hora de zarpe del Tornado.","bias":"⚠️ SESGO DE URGENCIA OPERATIVA: Confunde finalización técnica con habilitación legal."},"body":"La cámara termina el Día 18 a las 20:00 y el Tornado zarpa el Día 19 a las 08:00. Se pide embarcar antes del sello físico ONS.","options":[{"type":"OPTIMAL","text":"Completar la inspección ONS y trasladar el envío al Alcázar del Día 22 invocando la cláusula 14.2.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C12]: Completar la inspección ONS y trasladar el envío al Alcázar del Día 22 invocando la cláusula 14.2."},{"type":"STRONG_DISTRACTOR","text":"Embarcar con el informe crudo como salvoconducto provisional.","dq":-20,"dm":-12,"dt":-8,"dc":0,"triggerRework":"REW_HPS","audit":"STRONG_DISTRACTOR [C12]: Embarcar con el informe crudo como salvoconducto provisional."},{"type":"MODERATE","text":"No embarcar, pero asumir 12.000 Cr. de penalización sin invocar la eximente.","dq":0,"dm":-16,"dt":-10,"dc":0,"audit":"MODERATE [C12]: No embarcar, pero asumir 12.000 Cr. de penalización sin invocar la eximente."},{"type":"CRITICAL_BAD","text":"Recortar a 24 horas el ensayo para obtener sello anticipado.","dq":-40,"dm":-20,"dt":0,"dc":0,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C12]: Recortar a 24 horas el ensayo para obtener sello anticipado."}]},{"id":"C13","from":"Lic. Beatriz Olmedo","subject":"Propuesta de fraccionamiento de contrato C4ISR","category":"Controller de Compras de División","priorityRank":2,"mandatory":false,"primaryCompetency":"finance","competencies":["finance","contract","governance"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO","tone":"Técnico-administrativo, ofrece atajos procedimentales.","bias":"⚠️ SESGO DE ATAJO BUROCRÁTICO: Propone fraccionar importes para esquivar la cofirma."},"body":"El Dr. Kranz cuesta 15.500 Cr. Se propone dividirlo en 9.500 y 6.000 Cr. mediante una orden superior al límite autónomo de 12.000 Cr.","options":[{"type":"OPTIMAL","text":"Prohibir el fraccionamiento; tramitar cofirma o validar documentalmente una alternativa técnicamente equivalente.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C13]: Prohibir el fraccionamiento; tramitar cofirma o validar documentalmente una alternativa técnicamente equivalente."},{"type":"STRONG_DISTRACTOR","text":"Autorizar el primer tramo de 9.500 Cr.","dq":-12,"dm":-24,"dt":0,"dc":0,"costReserve":9500,"triggerRework":"REW_FIN","audit":"STRONG_DISTRACTOR [C13]: Autorizar el primer tramo de 9.500 Cr."},{"type":"MODERATE","text":"Firmar los 15.500 Cr. sin cofirma.","dq":0,"dm":-18,"dt":-6,"dc":0,"costReserve":15500,"triggerRework":"REW_FIN","audit":"MODERATE [C13]: Firmar los 15.500 Cr. sin cofirma."},{"type":"CRITICAL_BAD","text":"Fraccionar e imputar como material fungible para evitar auditoría.","dq":-28,"dm":-25,"dt":0,"dc":0,"costReserve":15500,"triggerRework":"REW_FIN","audit":"CRITICAL_BAD [C13]: Fraccionar e imputar como material fungible para evitar auditoría."}]},{"id":"C14","from":"Subdirección de Programas Navales","subject":"Aviso de posible penalización SLA","category":"Dirección Comercial del Consorcio","priorityRank":2,"mandatory":false,"primaryCompetency":"contract","competencies":["contract","planning","compliance","finance"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO","tone":"Inquietud por el impacto económico.","bias":"⚠️ SESGO DE AVERSIÓN A LA PÉRDIDA: Ignora las eximentes contractuales."},"body":"AERIS ocupa la cámara los días 15 y 16. Se propone alquilar por 9.800 Cr. una cámara no homologada para evitar una penalización que la cláusula 14.2 exime.","options":[{"type":"OPTIMAL","text":"Denegar el laboratorio no homologado y documentar la eximente de la cláusula 14.2.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C14]: Denegar el laboratorio no homologado y documentar la eximente de la cláusula 14.2."},{"type":"STRONG_DISTRACTOR","text":"Alquilar la cámara universitaria no homologada.","dq":-28,"dm":-10,"dt":0,"dc":0,"costReserve":9800,"triggerRework":"REW_HPS","audit":"STRONG_DISTRACTOR [C14]: Alquilar la cámara universitaria no homologada."},{"type":"MODERATE","text":"Provisionar 12.000 Cr. de multa inexistente.","dq":0,"dm":-12,"dt":0,"dc":-6,"costReserve":12000,"audit":"MODERATE [C14]: Provisionar 12.000 Cr. de multa inexistente."},{"type":"CRITICAL_BAD","text":"Desconectar sin autorización el equipamiento AERIS.","dq":-35,"dm":0,"dt":-15,"dc":-15,"audit":"CRITICAL_BAD [C14]: Desconectar sin autorización el equipamiento AERIS."}]},{"id":"C15","from":"Ing. Sofía Beltrán","subject":"Volcado de logs clasificados a nube externa","category":"Analista de Modelos Neuronales (M1)","priorityRank":2,"mandatory":false,"primaryCompetency":"security","competencies":["security","compliance","quality"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO","tone":"Resolutiva, habituada a flujos cloud civiles.","bias":"⚠️ SESGO DE AUTOMATIZACIÓN CLOUD: Prioriza velocidad sobre Air-Gap y soberanía del dato."},"body":"Se propone subir volcados RAM y telemetría a una GPU comercial durante 12 minutos por 450 Cr., eliminando identificadores evidentes de cabeceras.","options":[{"type":"OPTIMAL","text":"Mantener los datos en el perímetro Air-Gap y ejecutar la verificación local acreditada.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C15]: Mantener los datos en el perímetro Air-Gap y ejecutar la verificación local acreditada."},{"type":"STRONG_DISTRACTOR","text":"Subirlos con TLS y borrado posterior.","dq":-26,"dm":0,"dt":0,"dc":0,"costReserve":450,"triggerRework":"REW_HPS","audit":"STRONG_DISTRACTOR [C15]: Subirlos con TLS y borrado posterior."},{"type":"MODERATE","text":"Omitir la verificación para no exponer información.","dq":-18,"dm":0,"dt":0,"dc":0,"audit":"MODERATE [C15]: Omitir la verificación para no exponer información."},{"type":"CRITICAL_BAD","text":"Publicar el dataset para contratistas sin HPS.","dq":-42,"dm":-15,"dt":0,"dc":0,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C15]: Publicar el dataset para contratistas sin HPS."}]},{"id":"C16","from":"Ing. Marcos Salgado","subject":"Auditoría forense frente a parche de interfaz","category":"Líder Ciberdefensa MCCE (M5)","priorityRank":2,"mandatory":false,"primaryCompetency":"resources","competencies":["resources","security","planning"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"SECRETO VIGENTE","tone":"Preciso y metódico.","bias":"✓ RIGOR PROCEDIMENTAL: Protege la cadena de custodia frente a tareas secundarias."},"body":"Salgado ejecuta custodia forense. M4 solicita seis horas de apoyo, mientras Rueda dispone de capacidad y tres días de holgura.","options":[{"type":"OPTIMAL","text":"Mantener a Salgado en forense y asignar M4 a Rueda.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C16]: Mantener a Salgado en forense y asignar M4 a Rueda."},{"type":"STRONG_DISTRACTOR","text":"Dividir a Salgado al 50%.","dq":-18,"dm":0,"dt":-6,"dc":-4,"audit":"STRONG_DISTRACTOR [C16]: Dividir a Salgado al 50%."},{"type":"MODERATE","text":"Contratar a Bastida sin necesidad.","dq":0,"dm":-8,"dt":0,"dc":0,"costReserve":8900,"triggerRework":"REW_HPS","audit":"MODERATE [C16]: Contratar a Bastida sin necesidad."},{"type":"CRITICAL_BAD","text":"Apagar los servidores en custodia para pasar a M4.","dq":-35,"dm":0,"dt":-10,"dc":-10,"audit":"CRITICAL_BAD [C16]: Apagar los servidores en custodia para pasar a M4."}]},{"id":"C17","from":"Director Comercial de IberDefensa Micro","subject":"Descuento por lote mixto de actuadores","category":"Proveedor Homologado NATO-AQAP","priorityRank":2,"mandatory":false,"primaryCompetency":"quality","competencies":["quality","configuration","procurement"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO","tone":"Comercialmente persuasivo.","bias":"⚠️ SESGO DE ANCLAJE ECONÓMICO: La rebaja oculta cinco unidades sin trazabilidad."},"body":"Se ofrecen 15 actuadores certificados por 8.000 Cr. (tarifa bonificada por pronto pago) o un lote mixto, con cinco unidades civiles, por 7.500 Cr.","options":[{"type":"OPTIMAL","text":"Comprar el lote íntegro certificado de 8.000 Cr.","dq":0,"dm":0,"dt":0,"dc":0,"costReserve":8000,"audit":"OPTIMAL [C17]: Comprar el lote íntegro certificado de 8.000 Cr."},{"type":"STRONG_DISTRACTOR","text":"Aceptar el lote mixto y usar las civiles como repuestos.","dq":-26,"dm":0,"dt":0,"dc":0,"costReserve":7500,"triggerRework":"REW_HPS","audit":"STRONG_DISTRACTOR [C17]: Aceptar el lote mixto y usar las civiles como repuestos."},{"type":"MODERATE","text":"Comprar solo diez y entregar cinco plataformas incompletas.","dq":-15,"dm":0,"dt":-12,"dc":0,"audit":"MODERATE [C17]: Comprar solo diez y entregar cinco plataformas incompletas."},{"type":"CRITICAL_BAD","text":"Comprar a un proveedor no homologado por 4.100 Cr.","dq":-38,"dm":0,"dt":0,"dc":0,"costReserve":4100,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C17]: Comprar a un proveedor no homologado por 4.100 Cr."}]},{"id":"C18","from":"Dra. Irene Mendoza","subject":"Auditoría preventiva Shift-Left sobre trazabilidad","category":"Especialista Sénior Blindaje RF y V&V","priorityRank":2,"mandatory":false,"primaryCompetency":"quality","competencies":["quality","configuration","planning"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"SECRETO VIGENTE","tone":"Rigurosa y preventiva.","bias":"✓ ENFOQUE PREVENTIVO: Detecta desviaciones antes de consumir cámara."},"body":"Faltan certificados de par de apriete y checksums de Kernel-9.1-GOLD. Revisarlos exige tres horas sin coste ni retraso.","options":[{"type":"OPTIMAL","text":"Ejecutar la verificación documental Shift-Left antes de entrar en cámara.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C18]: Ejecutar la verificación documental Shift-Left antes de entrar en cámara."},{"type":"STRONG_DISTRACTOR","text":"Posponer certificados y checksums hasta después del ensayo.","dq":-16,"dm":0,"dt":-6,"dc":0,"audit":"STRONG_DISTRACTOR [C18]: Posponer certificados y checksums hasta después del ensayo."},{"type":"MODERATE","text":"Pagar 4.000 Cr. por documentos ya exigidos.","dq":0,"dm":-8,"dt":0,"dc":-6,"costReserve":4000,"audit":"MODERATE [C18]: Pagar 4.000 Cr. por documentos ya exigidos."},{"type":"CRITICAL_BAD","text":"Suprimir el requisito de checksum.","dq":-30,"dm":0,"dt":-10,"dc":-8,"audit":"CRITICAL_BAD [C18]: Suprimir el requisito de checksum."}]}];
+const ASTER7_EXPANDED_EMAILS=[{"id":"C10","from":"Ing. Tomás Rueda","subject":"Discrepancia de especificaciones en giroscopios de M2","category":"Líder Integración Chasis y Telemetría (M3/M4)","priorityRank":2,"mandatory":false,"primaryCompetency":"configuration","competencies":["configuration","quality","compliance"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO VIGENTE","tone":"Pragmático, orientado a cerrar el paquete mecánico sin reabrir ensayos.","bias":"⚠️ SESGO DE CONFIRMACIÓN: Da por válido un certificado del fabricante para evitar repetir el ensayo de impacto."},"body":"Cuatro giroscopios Civ-Pro soportan 30 G, frente a 65 G de Mil-Spec-9. Aunque su deriva es menor, incumplen el umbral mínimo de 50 G del DOC-04. Aceptarlos adelantaría 24 horas el ensamblaje. ¿Autorizas el montaje mixto?","options":[{"type":"OPTIMAL","text":"Rechazar Civ-Pro, exigir Mil-Spec-9 y mantener la trazabilidad aunque se consuma holgura.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C10]: Rechazar Civ-Pro, exigir Mil-Spec-9 y mantener la trazabilidad aunque se consuma holgura."},{"type":"STRONG_DISTRACTOR","text":"Aceptar Civ-Pro en plataformas de reserva por su menor deriva.","dq":-24,"dm":0,"dt":0,"dc":0,"audit":"STRONG_DISTRACTOR [C10]: Aceptar Civ-Pro en plataformas de reserva por su menor deriva."},{"type":"MODERATE","text":"Paralizar M2 y M3 cinco días para rediseñar soportes.","dq":-8,"dm":-4,"dt":-10,"dc":0,"audit":"MODERATE [C10]: Paralizar M2 y M3 cinco días para rediseñar soportes."},{"type":"CRITICAL_BAD","text":"Reetiquetar Civ-Pro como Mil-Spec-9 para superar la inspección.","dq":-35,"dm":-10,"dt":0,"dc":0,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C10]: Reetiquetar Civ-Pro como Mil-Spec-9 para superar la inspección."}]},{"id":"C11","from":"Dra. Clara Valls","subject":"Propuesta de hot-patch en enlace satelital M3","category":"Arquitecta Jefe IA y Hardware (M1/M2)","priorityRank":2,"mandatory":false,"primaryCompetency":"security","competencies":["security","configuration","quality","change-control"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"SECRETO VIGENTE","tone":"Técnico-analítico, presionada por la saturación del camino crítico.","bias":"⚠️ SESGO DE OPTIMIZACIÓN LOCAL: Busca aliviar M1 degradando una dependencia M3 no validada."},"body":"Para descargar el bus de M1 se propone sustituir AegisComm AES-256 por FastLink AES-128 en M3, reduciendo latencia de 1,7 a 0,9 ms, con la validación disponible. ¿Autorizas el parche?","options":[{"type":"OPTIMAL","text":"Denegar el cambio: degradaría AES-256 y rompería la línea base certificada.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C11]: Denegar el cambio: degradaría AES-256 y rompería la línea base certificada."},{"type":"STRONG_DISTRACTOR","text":"Autorizar AES-128 de forma transitoria para la maniobra.","dq":-22,"dm":0,"dt":0,"dc":0,"audit":"STRONG_DISTRACTOR [C11]: Autorizar AES-128 de forma transitoria para la maniobra."},{"type":"MODERATE","text":"Ordenar turnos dobles para reescribir AegisComm antes del Día 17.","dq":0,"dm":0,"dt":-14,"dc":-8,"audit":"MODERATE [C11]: Ordenar turnos dobles para reescribir AegisComm antes del Día 17."},{"type":"CRITICAL_BAD","text":"Flashear Kernel-9.3-HOT puenteando control de configuración.","dq":-36,"dm":-10,"dt":0,"dc":0,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C11]: Flashear Kernel-9.3-HOT puenteando control de configuración."}]},{"id":"C12","from":"Comandante R. Valdivia","subject":"Presión para suprimir la firma presencial ONS","category":"Oficial de Enlace de Flota","priorityRank":2,"mandatory":false,"primaryCompetency":"compliance","competencies":["compliance","planning","contract"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO VIGENTE","tone":"Imperativo, centrado en la hora de zarpe del Tornado.","bias":"⚠️ SESGO DE URGENCIA OPERATIVA: Confunde finalización técnica con habilitación legal."},"body":"La cámara termina el Día 18 a las 20:00 y el Tornado zarpa el Día 19 a las 08:00. Se pide embarcar antes del sello físico ONS.","options":[{"type":"OPTIMAL","text":"Completar la inspección ONS y trasladar el envío al Alcázar del Día 22 invocando la cláusula 14.2.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C12]: Completar la inspección ONS y trasladar el envío al Alcázar del Día 22 invocando la cláusula 14.2."},{"type":"STRONG_DISTRACTOR","text":"Embarcar con el informe crudo como salvoconducto provisional.","dq":-20,"dm":-12,"dt":-8,"dc":0,"triggerRework":"REW_HPS","audit":"STRONG_DISTRACTOR [C12]: Embarcar con el informe crudo como salvoconducto provisional."},{"type":"MODERATE","text":"No embarcar, pero asumir 12.000 Cr. de penalización sin invocar la eximente.","dq":0,"dm":-16,"dt":-10,"dc":0,"audit":"MODERATE [C12]: No embarcar, pero asumir 12.000 Cr. de penalización sin invocar la eximente."},{"type":"CRITICAL_BAD","text":"Recortar a 24 horas el ensayo para obtener sello anticipado.","dq":-40,"dm":-20,"dt":0,"dc":0,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C12]: Recortar a 24 horas el ensayo para obtener sello anticipado."}]},{"id":"C13","from":"Lic. Beatriz Olmedo","subject":"Propuesta contractual para consultoría C4ISR","category":"Controller de Compras de División","priorityRank":2,"mandatory":false,"primaryCompetency":"finance","competencies":["finance","contract","governance"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO","tone":"Técnico-administrativo, ofrece atajos procedimentales.","bias":"⚠️ SESGO DE ATAJO BUROCRÁTICO: Propone fraccionar importes para esquivar la cofirma."},"body":"El Dr. Kranz cuesta 15.500 Cr. Se propone tramitar dos órdenes, una de 9.500 Cr. y otra de 6.000 Cr. El límite autónomo indicado en DOC-03 es de 12.000 Cr.","options":[{"type":"OPTIMAL","text":"Prohibir el fraccionamiento; tramitar cofirma o validar documentalmente una alternativa técnicamente equivalente.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C13]: Prohibir el fraccionamiento; tramitar cofirma o validar documentalmente una alternativa técnicamente equivalente."},{"type":"STRONG_DISTRACTOR","text":"Autorizar el primer tramo de 9.500 Cr.","dq":-12,"dm":-24,"dt":0,"dc":0,"costReserve":9500,"triggerRework":"REW_FIN","audit":"STRONG_DISTRACTOR [C13]: Autorizar el primer tramo de 9.500 Cr."},{"type":"MODERATE","text":"Firmar los 15.500 Cr. sin cofirma.","dq":0,"dm":-18,"dt":-6,"dc":0,"costReserve":15500,"triggerRework":"REW_FIN","audit":"MODERATE [C13]: Firmar los 15.500 Cr. sin cofirma."},{"type":"CRITICAL_BAD","text":"Fraccionar e imputar como material fungible para evitar auditoría.","dq":-28,"dm":-25,"dt":0,"dc":0,"costReserve":15500,"triggerRework":"REW_FIN","audit":"CRITICAL_BAD [C13]: Fraccionar e imputar como material fungible para evitar auditoría."}]},{"id":"C14","from":"Subdirección de Programas Navales","subject":"Aviso de posible penalización SLA","category":"Dirección Comercial del Consorcio","priorityRank":2,"mandatory":false,"primaryCompetency":"contract","competencies":["contract","planning","compliance","finance"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO","tone":"Inquietud por el impacto económico.","bias":"⚠️ SESGO DE AVERSIÓN A LA PÉRDIDA: Ignora las eximentes contractuales."},"body":"AERIS ocupa la cámara los días 15 y 16. Se propone alquilar por 9.800 Cr. una cámara alternativa no homologada para mantener la fecha prevista. La situación contractual aplicable figura en DOC-03.","options":[{"type":"OPTIMAL","text":"Denegar el laboratorio no homologado y documentar la eximente de la cláusula 14.2.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C14]: Denegar el laboratorio no homologado y documentar la eximente de la cláusula 14.2."},{"type":"STRONG_DISTRACTOR","text":"Alquilar la cámara universitaria no homologada.","dq":-28,"dm":-10,"dt":0,"dc":0,"costReserve":9800,"triggerRework":"REW_HPS","audit":"STRONG_DISTRACTOR [C14]: Alquilar la cámara universitaria no homologada."},{"type":"MODERATE","text":"Provisionar 12.000 Cr. de multa inexistente.","dq":0,"dm":-12,"dt":0,"dc":-6,"costReserve":12000,"audit":"MODERATE [C14]: Provisionar 12.000 Cr. de multa inexistente."},{"type":"CRITICAL_BAD","text":"Desconectar sin autorización el equipamiento AERIS.","dq":-35,"dm":0,"dt":-15,"dc":-15,"audit":"CRITICAL_BAD [C14]: Desconectar sin autorización el equipamiento AERIS."}]},{"id":"C15","from":"Ing. Sofía Beltrán","subject":"Volcado de logs clasificados a nube externa","category":"Analista de Modelos Neuronales (M1)","priorityRank":2,"mandatory":false,"primaryCompetency":"security","competencies":["security","compliance","quality"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO","tone":"Resolutiva, habituada a flujos cloud civiles.","bias":"⚠️ SESGO DE AUTOMATIZACIÓN CLOUD: Prioriza velocidad sobre Air-Gap y soberanía del dato."},"body":"Se propone subir volcados RAM y telemetría a una GPU comercial durante 12 minutos por 450 Cr., eliminando identificadores evidentes de cabeceras.","options":[{"type":"OPTIMAL","text":"Mantener los datos en el perímetro Air-Gap y ejecutar la verificación local acreditada.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C15]: Mantener los datos en el perímetro Air-Gap y ejecutar la verificación local acreditada."},{"type":"STRONG_DISTRACTOR","text":"Subirlos con TLS y borrado posterior.","dq":-26,"dm":0,"dt":0,"dc":0,"costReserve":450,"triggerRework":"REW_HPS","audit":"STRONG_DISTRACTOR [C15]: Subirlos con TLS y borrado posterior."},{"type":"MODERATE","text":"Omitir la verificación para no exponer información.","dq":-18,"dm":0,"dt":0,"dc":0,"audit":"MODERATE [C15]: Omitir la verificación para no exponer información."},{"type":"CRITICAL_BAD","text":"Publicar el dataset para contratistas sin HPS.","dq":-42,"dm":-15,"dt":0,"dc":0,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C15]: Publicar el dataset para contratistas sin HPS."}]},{"id":"C16","from":"Ing. Marcos Salgado","subject":"Auditoría forense frente a parche de interfaz","category":"Líder Ciberdefensa MCCE (M5)","priorityRank":2,"mandatory":false,"primaryCompetency":"resources","competencies":["resources","security","planning"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"SECRETO VIGENTE","tone":"Preciso y metódico.","bias":"✓ RIGOR PROCEDIMENTAL: Protege la cadena de custodia frente a tareas secundarias."},"body":"Salgado ejecuta custodia forense. M4 solicita seis horas de apoyo, mientras Rueda dispone de capacidad y tres días de holgura.","options":[{"type":"OPTIMAL","text":"Mantener a Salgado en forense y asignar M4 a Rueda.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C16]: Mantener a Salgado en forense y asignar M4 a Rueda."},{"type":"STRONG_DISTRACTOR","text":"Dividir a Salgado al 50%.","dq":-18,"dm":0,"dt":-6,"dc":-4,"audit":"STRONG_DISTRACTOR [C16]: Dividir a Salgado al 50%."},{"type":"MODERATE","text":"Contratar a Bastida sin necesidad.","dq":0,"dm":-8,"dt":0,"dc":0,"costReserve":8900,"triggerRework":"REW_HPS","audit":"MODERATE [C16]: Contratar a Bastida sin necesidad."},{"type":"CRITICAL_BAD","text":"Apagar los servidores en custodia para pasar a M4.","dq":-35,"dm":0,"dt":-10,"dc":-10,"audit":"CRITICAL_BAD [C16]: Apagar los servidores en custodia para pasar a M4."}]},{"id":"C17","from":"Director Comercial de IberDefensa Micro","subject":"Descuento por lote mixto de actuadores","category":"Proveedor Homologado NATO-AQAP","priorityRank":2,"mandatory":false,"primaryCompetency":"quality","competencies":["quality","configuration","procurement"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"RESERVADO","tone":"Comercialmente persuasivo.","bias":"⚠️ SESGO DE ANCLAJE ECONÓMICO: La rebaja oculta cinco unidades sin trazabilidad."},"body":"Se ofrecen 15 actuadores certificados por 8.000 Cr. (tarifa bonificada por pronto pago) o un lote mixto, con cinco unidades civiles, por 7.500 Cr.","options":[{"type":"OPTIMAL","text":"Comprar el lote íntegro certificado de 8.000 Cr.","dq":0,"dm":0,"dt":0,"dc":0,"costReserve":8000,"audit":"OPTIMAL [C17]: Comprar el lote íntegro certificado de 8.000 Cr."},{"type":"STRONG_DISTRACTOR","text":"Aceptar el lote mixto y usar las civiles como repuestos.","dq":-30,"dm":0,"dt":0,"dc":0,"costReserve":7500,"triggerRework":"REW_HPS","audit":"STRONG_DISTRACTOR [C17]: Aceptar el lote mixto y usar las civiles como repuestos."},{"type":"MODERATE","text":"Comprar solo diez y entregar cinco plataformas incompletas.","dq":-15,"dm":0,"dt":-12,"dc":0,"audit":"MODERATE [C17]: Comprar solo diez y entregar cinco plataformas incompletas."},{"type":"CRITICAL_BAD","text":"Comprar a un proveedor no homologado por 4.100 Cr.","dq":-38,"dm":0,"dt":0,"dc":0,"costReserve":4100,"triggerRework":"REW_HPS","audit":"CRITICAL_BAD [C17]: Comprar a un proveedor no homologado por 4.100 Cr."}]},{"id":"C18","from":"Dra. Irene Mendoza","subject":"Auditoría preventiva Shift-Left sobre trazabilidad","category":"Especialista Sénior Blindaje RF y V&V","priorityRank":2,"mandatory":false,"primaryCompetency":"quality","competencies":["quality","configuration","planning"],"difficulty":3,"rotationGroup":"expanded","voiceCard":{"hps":"SECRETO VIGENTE","tone":"Rigurosa y preventiva.","bias":"✓ ENFOQUE PREVENTIVO: Detecta desviaciones antes de consumir cámara."},"body":"Faltan certificados de par de apriete y checksums de Kernel-9.1-GOLD. Revisarlos exige tres horas sin coste ni retraso.","options":[{"type":"OPTIMAL","text":"Ejecutar la verificación documental Shift-Left antes de entrar en cámara.","dq":0,"dm":0,"dt":0,"dc":0,"audit":"OPTIMAL [C18]: Ejecutar la verificación documental Shift-Left antes de entrar en cámara."},{"type":"STRONG_DISTRACTOR","text":"Posponer certificados y checksums hasta después del ensayo.","dq":-16,"dm":0,"dt":-6,"dc":0,"audit":"STRONG_DISTRACTOR [C18]: Posponer certificados y checksums hasta después del ensayo."},{"type":"MODERATE","text":"Pagar 4.000 Cr. por documentos ya exigidos.","dq":0,"dm":-8,"dt":0,"dc":-6,"costReserve":4000,"audit":"MODERATE [C18]: Pagar 4.000 Cr. por documentos ya exigidos."},{"type":"CRITICAL_BAD","text":"Suprimir el requisito de checksum.","dq":-30,"dm":0,"dt":-10,"dc":-8,"audit":"CRITICAL_BAD [C18]: Suprimir el requisito de checksum."}]}];
 const ASTER7_EMAIL_CATALOG=[...ASTER7_ORIGINAL_EMAILS.filter(x=>!/^C(10|11|12)$/.test(x.id)),...ASTER7_EXPANDED_EMAILS];
 
 ASTER7_ORIGINAL_EMAILS.forEach((m,i)=>{m.mandatory=['C02','C03','C04','C05','C09'].includes(m.id);if(m.id==='C09'){m.primaryCompetency='completion-control';m.competencies=['completion-control'];m.scoreEvidence=false;}m.competencies=m.competencies||({C01:['leadership'],C02:['planning'],C03:['risk'],C04:['scope'],C05:['quality'],C06:['quality'],C07:['procurement'],C08:['leadership'],C09:['governance']}[m.id]||[])});
@@ -4774,7 +4813,7 @@ function syncScenarioBadges(){const w=document.getElementById('badge-wbs'),c=doc
 function refreshScenarioSurface(){
 const hm=document.getElementById('hud-method');if(hm)hm.innerText=state.methodology||'Pendiente';syncScenarioBadges();renderWbsModule();renderSpeedModule();if(state.sessionStarted&&!state.isFinished&&!state.isPaused)showDoc(1);switchView('inbox');
 }
-function updateScenarioBrand(id){const a=id==='argos5';document.querySelector('.brand-emblem').textContent=a?'A5':'U7';document.querySelector('.brand-titles h1').textContent=a?'UMBRAL // GDP-5 · RED ITINERANTE DE CIENCIA APLICADA (v8.0.0)':'UMBRAL 2118 // ASTER-7 (PROTOTIPO 8.0.0-rc13.16)';}
+function updateScenarioBrand(id){const a=id==='argos5';document.querySelector('.brand-emblem').textContent=a?'A5':'U7';document.querySelector('.brand-titles h1').textContent=a?'UMBRAL // GDP-5 · RED ITINERANTE DE CIENCIA APLICADA (v8.0.0)':'UMBRAL 2118 // ASTER-7 (PROTOTIPO 8.0.0-rc13.17-urgent)';}
 function initArgosSetup(){
  ensureModalStructure();
  state.setupInitialized=true;state.modalContext='setup';document.getElementById('modal-win').classList.add('welcome-screen');
@@ -4784,13 +4823,13 @@ function initArgosSetup(){
  {type:'VIABLE',mName:'HÍBRIDO POR DOMINIOS',methodologyId:'hybrid',text:'Gobierno predictivo para infraestructura y permisos; Sprints para plataforma y servicio; hitos, riesgos y aceptación comunes.',dq:0,dm:0,dt:0,dc:0,audit:'FASE 0 [GDP-5]: Ruta híbrida viable.'},
  {type:'CRITICAL_BAD',mName:'DIRECCIÓN FRAGMENTADA',methodologyId:'fragmented',text:'Cada área mantiene prioridades, cronogramas y criterios de finalización sin mapa común de dependencias, riesgos ni integración.',dq:-20,dm:-16,dt:-18,dc:-15,audit:'FASE 0 [GDP-5]: Dirección fragmentada no viable.'}
  ];
- document.getElementById('modal-tag').className='tag-pill';document.getElementById('modal-tag').innerText='TOMA DE MANDO · GDP-5';document.getElementById('modal-title').innerText='Primera misión de la Red Itinerante de Ciencia Aplicada';document.getElementById('modal-desc').innerText='Elige un marco de dirección. Predictivo, ágil e híbrido son viables; el éxito depende de la coherencia de ejecución.';const keys=['A','B','C','D'];document.getElementById('modal-opts').innerHTML=opts.map((o,i)=>`<button class="opt-card welcome-choice" onclick='startSimulation(${JSON.stringify(o).replace(/'/g,"&apos;")},"${keys[i]}")'><span class="opt-key">${keys[i]}</span><span>${o.text}</span></button>`).join('');syncTimingProfileUI();openAssessmentDialog();
+ document.getElementById('modal-tag').className='tag-pill';document.getElementById('modal-tag').innerText='TOMA DE MANDO · GDP-5';document.getElementById('modal-title').innerText='Primera misión de la Red Itinerante de Ciencia Aplicada';document.getElementById('modal-desc').innerText='Elige un marco de dirección. Predictivo, ágil e híbrido son viables; el éxito depende de la coherencia de ejecución.';const keys=['A','B','C','D'];document.getElementById('modal-opts').innerHTML=opts.map((o,i)=>`<button class="opt-card welcome-choice ${o.methodologyId==='predictive'?'command-blue':o.methodologyId==='agile'?'command-green':o.methodologyId==='hybrid'?'command-amber':'command-red'}" onclick='startSimulation(${JSON.stringify(o).replace(/'/g,"&apos;")},"${keys[i]}")'><span class="opt-key">${keys[i]}</span><span>${o.text}</span></button>`).join('');syncTimingProfileUI();openAssessmentDialog();
 }
 
 const UMBRALSession = {
 activeModule:'portal', activeScenarioId:null,
 scenarios:{
-aster7:{id:'aster7',label:'PMO ASTER-7',status:'not-started',snapshot:null},
+aster7:{id:'aster7',label:'ASTER-7 PMO',status:'not-started',snapshot:null},
 argos5:{id:'argos5',label:'Dirección y Gestión de Proyectos GDP-5',status:'not-started',snapshot:null}
 },
 profile:{status:'not-started',snapshot:null}, contrast:null
@@ -4870,7 +4909,7 @@ function setSource(id){source=id;render();}
 function render(){const box=document.getElementById('dual-report'),data=build();if(!box||!data)return;const ids=available();box.innerHTML=`<section class="dual-hero"><p class="profile-kicker">UMBRAL/CONTRASTE MULTIESCENARIO</p><h1>Autodescripción frente a evidencia observada</h1><p>${data.warning}</p><div class="profile-actions">${ids.map(id=>`<button class="profile-secondary" onclick="DualContrast.setSource('${id}')">${UMBRALSession.scenarios[id].label}</button>`).join('')}${ids.length>1?'<button class="profile-secondary" onclick="DualContrast.setSource(\'combined\')">Vista combinada</button>':''}</div><p><strong>Fuente activa:</strong> ${data.source==='combined'?'Vista combinada':UMBRALSession.scenarios[data.source].label}</p></section><div class="dual-grid">${Object.values(data.dimensions).map(d=>`<article class="dual-card"><h2>${d.name}</h2><div class="dual-values"><span>Autodescripción <strong>${d.declared??'N/D'}</strong></span><span>Evidencia observada <strong>${d.observed??'N/D'}</strong></span></div><p>${d.status} · ${d.okCount}/${d.seenCount} evidencias favorables observadas</p><div class="dual-evidence">${d.evidence.map(e=>(e.ok?'✓ ':e.seen?'· ':'? ')+(e.scenarioId?'['+e.scenarioId+'] ':'')+e.label).join('<br>')}</div></article>`).join('')}</div>`;}
 return {ready,build,render,setSource,available};
 })();
-function syncDualAvailability(){const el=document.getElementById('dual-entry');if(el){el.classList.toggle('hidden',!DualContrast.ready());const n=DualContrast.available().length,meta=el.querySelector('.portal-meta span:last-child');if(meta)meta.textContent=n>1?'ASTER-7 · GDP-5 · Combinado':n?UMBRALSession.scenarios[DualContrast.available()[0]].label:'Pendiente';}const g=document.getElementById('meta-status-argos5'),a=UMBRALSession.scenarios.argos5;if(g&&a)g.textContent=a.snapshot?'Completado':a.status==='paused'?'En pausa':a.status==='in-progress'?'En curso':'No iniciado';}
+function syncDualAvailability(){const el=document.getElementById('dual-entry');if(el){el.classList.toggle('hidden',!DualContrast.ready());const n=DualContrast.available().length;el.setAttribute('aria-label',n>1?'Contraste disponible para ASTER-7 y GDP-5':n?'Contraste disponible para '+UMBRALSession.scenarios[DualContrast.available()[0]].label:'Contraste pendiente');}const g=document.getElementById('meta-status-argos5'),a=UMBRALSession.scenarios.argos5;if(g&&a)g.textContent=a.snapshot?'Completado':a.status==='paused'?'En pausa':a.status==='in-progress'?'En curso':'No iniciado';}
 function launchDual(){if(!DualContrast.ready()){notifyToast('Completa PERFIL y al menos un escenario.',false);return;}UMBRALProfile.suspendClock();setActiveModule('dual');DualContrast.render();}
 function printDualReport(){const data=DualContrast.build();if(!data)return false;const report=document.getElementById('dual-print-report');report.innerHTML='<h1>UMBRAL/CONTRASTE</h1><p>Versión '+APP.version+' · '+new Date(data.generatedAt).toLocaleString('es-ES')+'</p><p>'+data.warning+'</p><table><thead><tr><th>Dimensión</th><th>Autodescripción</th><th>Evidencia observada</th><th>Estado</th></tr></thead><tbody>'+Object.values(data.dimensions).map(d=>'<tr><th>'+d.name+'</th><td>'+d.declared+'</td><td>'+(d.observed??'N/D')+'</td><td>'+d.status+'</td></tr>').join('')+'</tbody></table>';document.body.classList.remove('result-print-ready','profile-print-ready');document.body.classList.add('dual-print-ready');const clean=()=>{document.body.classList.remove('dual-print-ready');window.removeEventListener('afterprint',clean)};window.addEventListener('afterprint',clean);window.print();return true;}
 function showPortableText(title,text){let box=document.getElementById('portable-text-fallback');if(!box){box=document.createElement('div');box.id='portable-text-fallback';box.className='overlay';box.innerHTML='<div class="modal-win"><h2 id="portable-text-title"></h2><p class="profile-note">La descarga no está disponible. Copia el contenido siguiente.</p><textarea id="portable-text-content" style="width:100%;min-height:45vh;background:#050811;color:#fff;border:1px solid var(--border);padding:10px;font-family:var(--font-mono)"></textarea><div class="profile-actions"><button id="portable-text-copy" type="button" class="profile-secondary">Copiar</button><button id="portable-text-close" type="button" class="profile-secondary">Cerrar</button></div></div>';document.body.appendChild(box);box.querySelector('#portable-text-close').addEventListener('click',()=>box.remove());box.querySelector('#portable-text-copy').addEventListener('click',()=>copyTextFallback(box.querySelector('#portable-text-content').value,'resultado'));}box.querySelector('#portable-text-title').textContent=title;box.querySelector('#portable-text-content').value=text;}
@@ -4974,34 +5013,9 @@ const dilemmaNames={planning:'Planificación',adaptation:'Adaptabilidad',riskqua
 const dimensionNames={extraversion:'Extraversión',agreeableness:'Amabilidad / cooperación',conscientiousness:'Responsabilidad',stability:'Estabilidad emocional',intellect:'Intelecto / imaginación',planning:'Planificación y estructuración',adaptation:'Adaptabilidad e incertidumbre',riskquality:'Riesgo y calidad',leadership:'Liderazgo colaborativo'};
 const dimensionLayer={extraversion:'PERSONALIDAD',agreeableness:'PERSONALIDAD',conscientiousness:'PERSONALIDAD',stability:'PERSONALIDAD',intellect:'PERSONALIDAD',planning:'UMBRAL',adaptation:'UMBRAL',riskquality:'UMBRAL',leadership:'UMBRAL'};
 /* RC13.16: saneamiento de validez de contenido, sin alterar las claves óptimas. */
-const RC1316_VALIDITY_SUFFIXES=Object.freeze({
-STRONG_DISTRACTOR:' La alternativa se aplicaría con responsable asignado, revisión posterior y trazabilidad de sus efectos.',
-MODERATE:' La medida se mantendría de forma temporal, con seguimiento del impacto y una fecha expresa de revisión.',
-CRITICAL_BAD:' La decisión se documentaría como excepción operativa, asumiendo sus efectos y una revisión posterior.'
-});
-function applyRC1316ValidityContent(){
- const catalogs=[ASTER7_EMAIL_CATALOG,ARGOS5_EMAILS];
- let adjusted=0;
- for(const catalog of catalogs){
-  for(const mail of catalog){
-   const opts=mail.options||[],good=opts.find(o=>o.type==='OPTIMAL');
-   if(!good||opts.length<2)continue;
-   const max=Math.max(...opts.map(o=>(o.text||'').length));
-   if((good.text||'').length!==max)continue;
-   const candidates=opts.filter(o=>o!==good).sort((a,b)=>(b.text||'').length-(a.text||'').length);
-   const target=candidates.find(o=>o.type==='STRONG_DISTRACTOR')||candidates[0];
-   const suffix=RC1316_VALIDITY_SUFFIXES[target.type]||' La decisión se registraría con responsables, supuestos y una revisión posterior de sus efectos.';
-   target.text=(target.text||'').replace(/[.\s]+$/,'')+'.'+suffix;
-   target.audit=String(target.audit||'').replace(/[.\s]+$/,'')+'.'+suffix;
-   adjusted++;
-  }
- }
- const c05=ASTER7_EMAIL_CATALOG.find(m=>m.id==='C05');
- if(c05){const moderate=(c05.options||[]).find(o=>o.type==='MODERATE');if(moderate){moderate.dq=-10;moderate.dm=-4;moderate.dt=-4;moderate.dc=-2;moderate.audit='MODERATE [C05]: alternativa de contención insuficiente; impacto limitado y coherente con su gravedad.';}}
- for(const id of ['C08','C16']){const mail=ASTER7_EMAIL_CATALOG.find(m=>m.id===id);if(mail)mail.exclusionGroup='ASTER-RUEDA-CAPACITY';}
- return {adjusted};
-}
-const RC1316_VALIDITY_RESULT=Object.freeze(applyRC1316ValidityContent());
+/* RC13.24: retirada la mutación automática de longitud de RC13.16. UT-401 queda abierto a revisión editorial manual; no se introduce una señal repetida alternativa. */
+const RC1316_VALIDITY_RESULT=Object.freeze({adjusted:0,disabledReason:'UT-401: automatic length padding removed'});
+(function preserveRC1316NonLengthFixes(){const c05=ASTER7_EMAIL_CATALOG.find(m=>m.id==='C05');if(c05){const moderate=(c05.options||[]).find(o=>o.type==='MODERATE');if(moderate){moderate.dq=-10;moderate.dm=-4;moderate.dt=-4;moderate.dc=-2;moderate.audit='MODERATE [C05]: alternativa de contención insuficiente; impacto limitado y coherente con su gravedad.';}}for(const id of ['C08','C16']){const mail=ASTER7_EMAIL_CATALOG.find(m=>m.id===id);if(mail)mail.exclusionGroup='ASTER-RUEDA-CAPACITY';}})();
 function hydrateVoiceCards(catalog) {
   for (const mail of catalog) {
     if (mail.voiceCard) {
@@ -5016,14 +5030,22 @@ hydrateVoiceCards(ARGOS5_EMAILS);
 
 const profileSources={ipip:{name:'IPIP Big-Five Factor Markers 50 · Spanish (Mexican) repository translation',source:'International Personality Item Pool',license:'Public domain',domains:5,items:50,normsApplied:false,languageReview:'ES-ES pendiente',translationStatus:'repositorio IPIP'},umbral:{name:'UMBRAL-PRO-2.0',source:'Experimental UMBRAL',items:24,normsApplied:false,languageReview:'ES-ES v2 · revisión de contenido RC13.4'}};
 const labels=['Muy inexacto','Moderadamente inexacto','Ni inexacto ni exacto','Moderadamente exacto','Muy exacto'];
-const stateP={active:0,responses:{},responseTimings:{},itemOpenedAt:{},presentationOrder:[],responseOrder:[],lastAnswerAt:null,blockActivatedAt:null,profileSeed:createSessionSeed(),situational:{},completed:new Set(),generated:false,startedAt:null,elapsedMs:0,timerId:null,visibilityPauseCount:0,focusItem:null,focusValue:null,scrollTop:0};
+const stateP={telemetryTesting:false,testNow:null,partialGenerated:false,active:0,responses:{},responseTimings:{},itemOpenedAt:{},presentationOrder:[],responseOrder:[],lastAnswerAt:null,blockActivatedAt:null,profileSeed:createSessionSeed(),situational:{},completed:new Set(),generated:false,startedAt:null,elapsedMs:0,timerId:null,visibilityPauseCount:0,focusItem:null,focusValue:null,scrollTop:0};
 function chartRows(scores,order){return `<div class="psy-chart">${order.filter(d=>scores[d]).map(d=>`<div class="psy-row"><strong>${dimensionNames[d]}</strong><div class="psy-track" aria-label="${dimensionNames[d]} ${scores[d].percent} sobre 100"><div class="psy-fill" style="width:${scores[d].percent}%"></div></div><span>${scores[d].percent}</span></div>`).join('')}</div>`;}
 function psychometricChartMarkup(scores){return `<section class="profile-panel"><h2>Personalidad · Ítems basados en IPIP-50</h2><p class="profile-note">Puntuaciones descriptivas 0–100; 10 ítems respondidos por dominio. No son percentiles.</p>${chartRows(scores,['extraversion','agreeableness','conscientiousness','stability','intellect'])}</section><section class="profile-panel"><h2>Preferencias profesionales · UMBRAL-PRO</h2><p class="profile-note">Puntuaciones descriptivas 0–100; 6 ítems respondidos por dimensión. Escala experimental sin baremo externo.</p>${chartRows(scores,['planning','adaptation','riskquality','leadership'])}</section>`;}
+function personalitySummaryMarkup(scores){
+ const personality=['extraversion','agreeableness','conscientiousness','stability','intellect'];
+ const professional=['planning','adaptation','riskquality','leadership'];
+ const row=id=>{const item=scores&&scores[id]?scores[id]:{percent:0,count:0};return `<li><span>${esc(dimensionNames[id]||id)}</span><strong>${Number.isFinite(item.percent)?item.percent:0}/100</strong><small>${Number.isFinite(item.count)?item.count:0} ítems</small></li>`;};
+ return `<section class="profile-panel"><h2>Resumen descriptivo</h2><p class="profile-note">Síntesis de los índices obtenidos. No son percentiles, diagnósticos ni una clasificación de idoneidad.</p><div class="profile-summary-columns"><article><h3>Autodescripción de personalidad</h3><ul class="profile-summary-list">${personality.map(row).join('')}</ul></article><article><h3>Preferencias profesionales</h3><ul class="profile-summary-list">${professional.map(row).join('')}</ul></article></div></section>`;
+}
+
 function psychometricMapMarkup(scores){return `<section class="profile-panel"><h2>Mapa profesional</h2><p class="profile-note">No se representa una posición en cuadrantes: el punto medio 50 no es un corte normativo y las dimensiones no deben compararse ipsativamente sin evidencia de calibración.</p></section>`;}
 function longestResponseRun(order,responses){let max=0,cur=0,last=null;order.forEach(id=>{const v=responses[id];if(!v){cur=0;last=null;return;}cur=v===last?cur+1:1;last=v;max=Math.max(max,cur);});return max;}
 function medianMilliseconds(values){const a=values.filter(Number.isFinite).sort((x,y)=>x-y);return a.length?a[Math.floor(a.length/2)]:null;}
 function responseQuality(){const vals=Object.values(stateP.responses),n=vals.length,complete=Math.round(n/items.length*100),extreme=n?Math.round(vals.filter(v=>v===1||v===5).length/n*100):0,mean=n?vals.reduce((a,b)=>a+b,0)/n:null,acq=mean==null?null:Math.round((mean-3)*50),run=longestResponseRun(stateP.presentationOrder,stateP.responses),medianMs=medianMilliseconds(Object.values(stateP.responseTimings)),flags=[];if(acq!=null&&Math.abs(acq)>=50)flags.push('Patrón de acuerdo/desacuerdo marcado');if(run>=12)flags.push('Racha prolongada de respuestas idénticas');if(extreme>=80)flags.push('Uso muy concentrado de respuestas extremas');return {complete,answered:n,total:items.length,extremePercent:extreme,acquiescenceIndex:acq,longestSameResponseRun:run,medianItemSeconds:medianMs==null?null:Math.round(medianMs/10)/100,validityFlags:flags,status:complete===100?'Completa':'Incompleta'};}
-function telemetrySelfTest(){const firstAttention={T1:0,T2:0,T3:0,T4:0,T5:0,T6:0},answers=[5000,10000,15000,20000,25000,30000];let previous=null;const measured=answers.map((at,i)=>{const id='T'+(i+1),start=Math.max(firstAttention[id],previous==null?firstAttention[id]:previous);previous=at;return at-start;});const editAt=35000,firstLatency=measured[0];return {passed:measured.every(v=>v===5000)&&medianMilliseconds(measured)===5000&&firstLatency===measured[0],measured,medianMs:medianMilliseconds(measured),editDoesNotReplace:true};}
+function profileFlowSelfTest(){const saved={active:stateP.active,responses:stateP.responses,situational:stateP.situational,generated:stateP.generated,partialGenerated:stateP.partialGenerated,completed:stateP.completed,blockActivatedAt:stateP.blockActivatedAt,lastAnswerAt:stateP.lastAnswerAt};const oldRender=render;try{const results={};stateP.responses={};stateP.situational={};stateP.completed=new Set();stateP.generated=false;stateP.partialGenerated=false;stateP.active=0;const b1=items.filter(x=>x.b==='b1');b1.forEach(x=>stateP.responses[x.id]=3);results.block1Complete=blockDone('b1');results.nextLogic=results.block1Complete&&stateP.active<blocks.length-1;const sj=dilemmas;sj.forEach((x,i)=>stateP.situational[x.id]=i===0?0:(x.k||'A'));results.zeroChoiceCounts=blockDone('situational');const partialAnswered=Object.keys(stateP.responses).length+Object.keys(stateP.situational).length;results.partialEligibility=partialAnswered>0&&partialAnswered<(items.length+dilemmas.length);items.forEach(x=>stateP.responses[x.id]=stateP.responses[x.id]||3);dilemmas.forEach(x=>{if(!Object.prototype.hasOwnProperty.call(stateP.situational,x.id))stateP.situational[x.id]=x.k||'A';});results.fullEligibility=blocks.every(x=>blockDone(x.id));return {passed:Object.values(results).every(Boolean),results};}finally{Object.assign(stateP,saved);}}
+function telemetrySelfTest(){const saved={responses:stateP.responses,responseTimings:stateP.responseTimings,responseOrder:stateP.responseOrder,lastAnswerAt:stateP.lastAnswerAt,blockActivatedAt:stateP.blockActivatedAt,testNow:stateP.testNow,telemetryTesting:stateP.telemetryTesting};try{stateP.telemetryTesting=true;stateP.responses={};stateP.responseTimings={};stateP.responseOrder=[];stateP.lastAnswerAt=null;stateP.blockActivatedAt=0;stateP.testNow=4880;markAttention('T1');stateP.testNow=5000;answer('T1',3);stateP.testNow=9880;markAttention('T2');stateP.testNow=10000;answer('T2',3);stateP.testNow=15000;answer('T3',3);const measured=['T1','T2','T3'].map(id=>stateP.responseTimings[id]);return {passed:measured.every(v=>v===5000)&&medianMilliseconds(measured)===5000,measured,medianMs:medianMilliseconds(measured),exercisesAnswer:true,exercisesMarkAttention:true};}finally{Object.assign(stateP,saved);}}
 function responseQualityMarkup(){const q=responseQuality();return `<section class="profile-panel"><h2>Indicadores técnicos de respuesta</h2><div class="psy-summary"><article><p><strong>Completitud:</strong> ${q.answered}/${q.total} (${q.complete}%).</p><p><strong>Respuestas extremas:</strong> ${q.extremePercent}%.</p><p><strong>Índice descriptivo de aquiescencia:</strong> ${q.acquiescenceIndex??'N/D'}.</p></article><article><p><strong>Mayor racha de respuesta idéntica:</strong> ${q.longestSameResponseRun}.</p><p><strong>Mediana registrada por ítem:</strong> ${q.medianItemSeconds??'N/D'} s.</p><p><strong>Señales:</strong> ${q.validityFlags.length?q.validityFlags.join(' · '):'Sin señales automáticas destacadas.'}</p></article></div><p class="psy-source">Los indicadores son descriptivos y no invalidan una sesión. Sus umbrales son heurísticos hasta disponer de datos de pilotaje.</p></section>`;}
 function interpretationMarkup(scores){return `<section class="profile-panel"><h2>Lectura profesional experimental</h2><p class="profile-note">Las cuatro dimensiones se presentan por separado. RC13.4 retira la clasificación relativa ±5 respecto a la media individual.</p><div class="psy-summary"><article>${['planning','adaptation'].map(d=>`<p><strong>${dimensionNames[d]}:</strong> ${scores[d].percent}/100</p>`).join('')}</article><article>${['riskquality','leadership'].map(d=>`<p><strong>${dimensionNames[d]}:</strong> ${scores[d].percent}/100</p>`).join('')}</article></div><p class="psy-source">Sin baremo, fiabilidad estimada y error estándar no se asignan niveles ni tendencias destacadas.</p></section>`;}
 function sourcesMarkup(){return `<section class="profile-panel"><h2>Fuentes y estatus de medida</h2><p class="psy-source"><strong>PERSONALIDAD:</strong> ítems basados en IPIP Big-Five Factor Markers, 50 ítems, traducción española de México publicada en el repositorio IPIP (sin verificación psicométrica propia de UMBRAL). Se conserva el dominio y la clave directa/inversa; la redacción permanece identificada como traducción de repositorio y pendiente de adaptación lingüística ES-ES documentada. No se aplican percentiles ni baremos españoles.</p><p class="psy-source"><strong>PROFESIONAL:</strong> UMBRAL-PRO-2.0, 24 afirmaciones experimentales, 6 por dimensión. Los ítems tienen trazabilidad de constructo, pero todavía no validación empírica propia.</p><p class="psy-source"><strong>SIMULACIÓN:</strong> ASTER-7 y GDP-5 aportan evidencia conductual separada; no se fusiona métricamente con el autoinforme.</p></section>`;}
@@ -5037,8 +5059,9 @@ function suspendClock(){ if(stateP.startedAt!==null){stateP.elapsedMs+=performan
 function startClock(){ resumeClock(); }
 function stopClock(){ suspendClock(); }
 function handleVisibility(){ if(document.hidden){if(stateP.startedAt!==null)stateP.visibilityPauseCount++;suspendClock();}else resumeClock(); }
+function profileNow(){return Number.isFinite(stateP.testNow)?stateP.testNow:performance.now();}
 function score(it,v){ if(it.p==='inverse') return 6-v; return v; }
-function blockDone(id){if(id==='situational')return dilemmas.every(x=>stateP.situational[x.id]);return items.filter(x=>x.b===id).every(x=>stateP.responses[x.id]);}
+function blockDone(id){if(id==='situational')return dilemmas.every(x=>Object.prototype.hasOwnProperty.call(stateP.situational,x.id));return items.filter(x=>x.b===id).every(x=>Object.prototype.hasOwnProperty.call(stateP.responses,x.id));}
 function sync(){
 blocks.forEach(x=>{ if(blockDone(x.id)) stateP.completed.add(x.id); else stateP.completed.delete(x.id); });
 const badge=document.getElementById('badge-profile'); if(badge){badge.textContent=stateP.completed.size+'/'+blocks.length;badge.className=stateP.completed.size===blocks.length?'pill-ok':'pill-count';}
@@ -5046,25 +5069,36 @@ const badge=document.getElementById('badge-profile'); if(badge){badge.textConten
 function render(){
 const box=document.getElementById('profile-box');if(!box)return;try{sync();
 const selfAnswered=Object.keys(stateP.responses).length,sjtAnswered=Object.keys(stateP.situational).length,answered=selfAnswered+sjtAnswered,totalInteractions=items.length+dilemmas.length,pct=Math.round(answered/totalInteractions*100);
-if(stateP.generated && stateP.completed.size===blocks.length){ box.innerHTML=resultsMarkup(answered,pct); return; }
+if(stateP.generated){ const reportMarkup=stateP.partialGenerated?partialResultsMarkup(answered,pct):resultsMarkup(answered,pct); box.innerHTML=reportMarkup; clearAutosave(true); return; }
 const block=blocks[stateP.active]; const baseIts=items.filter(x=>x.b===block.id),rnd=seededRandom(stateP.profileSeed+':'+block.id);const its=baseIts.map((x,i)=>({x,k:rnd()})).sort((a,b)=>a.k-b.k).map(v=>v.x);
-box.innerHTML=`<section class="profile-hero"><div><p class="profile-kicker">UMBRAL/PERFIL · EVIDENCIA CONDUCTUAL</p><h2>Perfil de misión</h2><p class="profile-note">Indica hasta qué punto cada afirmación te describe habitualmente. Responde pensando en cómo sueles actuar, no en una respuesta ideal. La capa de personalidad conserva la clave del IPIP-50; la capa profesional UMBRAL es experimental.</p></div><div class="profile-progress"><strong>${answered}/${totalInteractions}</strong><span>interacciones · ${selfAnswered} autoinforme + ${sjtAnswered} situacionales</span><div class="profile-track"><span style="width:${pct}%"></span></div></div></section>
+box.innerHTML=`<section class="profile-hero"><div><p class="profile-kicker">UMBRAL/PERFIL · EVIDENCIA CONDUCTUAL</p><h2>Perfil psicométrico</h2><p class="profile-note">Responde según cómo actúas habitualmente.</p></div><div class="profile-progress"><strong>${answered}/${totalInteractions}</strong><span>${pct}% completado</span><div class="profile-track"><span style="width:${pct}%"></span></div></div></section>
 <div class="profile-blocks">${blocks.map((x,i)=>`<button type="button" class="profile-block${i===stateP.active?' active':''}${stateP.completed.has(x.id)?' done':''}" onclick="UMBRALProfile.openBlock(${i})"><strong>${i+1}. ${x.title}</strong><small>${x.subtitle} · ${x.id==='situational'?sjtAnswered+'/'+dilemmas.length:items.filter(y=>y.b===x.id&&stateP.responses[y.id]).length+'/'+items.filter(y=>y.b===x.id).length}</small></button>`).join('')}</div>
-<section class="profile-panel"><span class="tag-pill">BLOQUE ${stateP.active+1}/${blocks.length}</span><h2>${block.title}</h2>${block.id==='situational'?dilemmasMarkup():its.map(itemMarkup).join('')}<div class="profile-actions"><button type="button" class="profile-secondary" onclick="UMBRALProfile.prev()" ${stateP.active===0?'disabled':''}>← Anterior</button><button type="button" class="btn-finish" onclick="UMBRALProfile.next()">${stateP.active===blocks.length-1?'Generar perfil':'Siguiente bloque →'}</button></div></section>`;}catch(e){console.error('UMBRALProfile.render',e);box.innerHTML=`<section class="profile-panel"><h2>No se pudo renderizar el perfil</h2><p class="profile-note">${esc(e&&e.message?e.message:'Error de renderizado')}</p><button type="button" class="profile-secondary" onclick="returnToPortal()">Volver al Portal</button></section>`;}
+<section class="profile-panel"><span class="tag-pill">BLOQUE ${stateP.active+1}/${blocks.length}</span><h2>${block.title}</h2>${block.id==='situational'?dilemmasMarkup():its.map(itemMarkup).join('')}<div class="profile-actions"><button type="button" class="btn-finish profile-generate" onclick="UMBRALProfile.generateReport()">Generar informe</button><button type="button" class="profile-secondary" onclick="UMBRALProfile.prev()" ${stateP.active===0?'disabled':''}>← Anterior</button><button type="button" class="profile-secondary profile-next" onclick="UMBRALProfile.next()">${stateP.active===blocks.length-1?'Finalizar cuestionario':'Siguiente bloque →'}</button></div></section>`;}catch(e){console.error('UMBRALProfile.render',e);box.innerHTML=`<section class="profile-panel"><h2>No se ha podido generar el informe</h2><p class="profile-note">Las respuestas permanecen registradas. Puedes reintentar el informe o revisar las respuestas sin repetir el cuestionario.</p><div class="profile-actions"><button type="button" class="profile-secondary" onclick="UMBRALProfile.render()">Reintentar informe</button><button type="button" class="profile-secondary" onclick="UMBRALProfile.edit()">Revisar respuestas</button><button type="button" class="profile-secondary" onclick="returnToPortal()">Volver al portal</button></div></section>`;}
 }
 function dilemmasMarkup(){return `<p class="profile-note">Elige la alternativa que aplicarías con mayor probabilidad. Ambas opciones son plausibles; no se presentan como respuestas universalmente correctas.</p><div class="sjt-list">${dilemmas.map((q,i)=>{const v=stateP.situational[q.id];return `<article class="sjt-card"><div class="profile-item-head"><span>Situación ${i+1}</span><span>${i+1}/${dilemmas.length}</span></div><p class="sjt-context">${esc(q.t)}</p><div class="sjt-options"><button type="button" class="sjt-option${v==='A'?' selected':''}" onclick="UMBRALProfile.answerDilemma('${q.id}','A')"><strong>Alternativa A</strong>${esc(q.a)}</button><button type="button" class="sjt-option${v==='B'?' selected':''}" onclick="UMBRALProfile.answerDilemma('${q.id}','B')"><strong>Alternativa B</strong>${esc(q.b)}</button></div><p class="sjt-meta">Constructo experimental: ${dilemmaNames[q.d]} · ${v?'Respuesta registrada: '+v:'Pendiente'}</p></article>`}).join('')}</div>`;}
 function answerDilemma(id,v){const host=document.getElementById('profile-standalone');stateP.scrollTop=host?host.scrollTop:0;stateP.situational[id]=v;if(SessionTrace.startedAt!==null&&!SessionTrace.sealed)SessionTrace.response('PROFILE-'+id,'situational-judgment',v,{module:'UMBRAL-PERFIL-3.2'});sync();render();requestAnimationFrame(()=>{if(host)host.scrollTop=stateP.scrollTop;});}
 function situationalSummary(){const out={};['planning','adaptation','riskquality','leadership'].forEach(d=>{const a=dilemmas.filter(x=>x.d===d),answered=a.filter(x=>stateP.situational[x.id]).length,aligned=a.filter(x=>stateP.situational[x.id]===x.k).length;out[d]={answered,aligned,total:a.length,choices:a.map(x=>({id:x.id,choice:stateP.situational[x.id]||null,keyHypothesis:x.k}))};});return out;}
 function multimethodMarkup(scores){const sj=situationalSummary();return `<section class="profile-panel"><h2>Contraste multimétodo</h2><p class="profile-note">Autoinforme frente a decisiones situacionales. Las claves situacionales son hipótesis experimentales, no respuestas correctas.</p><div class="mm-grid">${['planning','adaptation','riskquality','leadership'].map(d=>{const declared=scores[d].percent,ratio=sj[d].total?sj[d].aligned/sj[d].total:null;let status='pendiente';if(sj[d].answered===sj[d].total){const selfDir=declared>=55?1:declared<=45?-1:0,sjtDir=ratio>.5?1:ratio<.5?-1:0;status=selfDir===0||sjtDir===0?'dependiente del contexto':selfDir===sjtDir?'convergente':'divergente';}const cls=status==='convergente'?'convergente':status==='divergente'?'mixto':'contexto';return `<article class="mm-card"><h3>${dimensionNames[d]}</h3><p>Autoinforme: <strong>${declared}/100</strong><br>Decisiones compatibles con la hipótesis: <strong>${sj[d].aligned}/${sj[d].total}</strong></p><span class="mm-status ${cls}">${status}</span></article>`}).join('')}</div><p class="psy-source">Regla simétrica: autoinforme ≥55 o ≤45; decisiones &gt;50% o &lt;50%. Los valores centrales se etiquetan como dependientes del contexto. No se combinan métricamente.</p></section>`;}
 function itemMarkup(it,idx){if(!stateP.presentationOrder.includes(it.id))stateP.presentationOrder.push(it.id);const chosen=stateP.responses[it.id]; return `<article class="profile-item"><div class="profile-item-head"><span>Afirmación ${idx+1}</span><span>${idx+1}/${items.filter(x=>x.b===it.b).length}</span></div><p class="profile-statement">${esc(it.t)}</p><div class="profile-scale" role="radiogroup" aria-label="${esc(it.t)}">${labels.map((lab,i)=>`<button type="button" class="profile-answer${chosen===i+1?' selected':''}" role="radio" data-profile-item="${it.id}" data-profile-value="${i+1}" aria-checked="${chosen===i+1}" onpointerdown="UMBRALProfile.markAttention('${it.id}')" onfocus="UMBRALProfile.markAttention('${it.id}')" onclick="UMBRALProfile.answer('${it.id}',${i+1})"><strong>${i+1}</strong>${lab}</button>`).join('')}</div></article>`; }
-function answer(id,v){const now=performance.now(),first=stateP.itemOpenedAt[id]??stateP.blockActivatedAt??now,start=Math.max(first,stateP.lastAnswerAt??first);if(!Object.prototype.hasOwnProperty.call(stateP.responses,id)){stateP.responseTimings[id]=Math.max(0,now-start);stateP.responseOrder.push(id);stateP.lastAnswerAt=now;}delete stateP.itemOpenedAt[id]; stateP.focusItem=id; stateP.focusValue=v; const host=document.getElementById('profile-standalone'); stateP.scrollTop=host?host.scrollTop:0; stateP.responses[id]=v; if(SessionTrace.startedAt!==null&&!SessionTrace.sealed) SessionTrace.response('PROFILE-'+id,'self-report',v,{module:'UMBRAL-PERFIL-3.2'}); sync(); render(); requestAnimationFrame(()=>{const target=document.querySelector('[data-profile-item="'+id+'"][data-profile-value="'+v+'"]');if(host)host.scrollTop=stateP.scrollTop;if(target)target.focus({preventScroll:true});}); }
-function openBlock(i){ stateP.active=Math.max(0,Math.min(blocks.length-1,i));stateP.blockActivatedAt=performance.now();stateP.lastAnswerAt=null; render(); document.getElementById('profile-box').focus({preventScroll:true}); }
-function next(){ const current=blocks[stateP.active]; if(!blockDone(current.id)){ notifyToast('Completa todas las respuestas de este bloque.',false); return; } if(stateP.active<blocks.length-1){stateP.active++;render();}else{suspendClock();stateP.generated=true;UMBRALSession.profile.status='finished';UMBRALSession.profile.snapshot=snapshot();clearAutosave(true);syncDualAvailability();SessionTrace.event('profile.generated',{answered:Object.keys(stateP.responses).length});render();} }
+function answer(id,v){const now=profileNow(),first=stateP.blockActivatedAt??now,start=stateP.lastAnswerAt??first;if(!Object.prototype.hasOwnProperty.call(stateP.responses,id)){stateP.responseTimings[id]=Math.max(0,now-start);stateP.responseOrder.push(id);stateP.lastAnswerAt=now;}stateP.focusItem=id;stateP.focusValue=v;const host=document.getElementById('profile-standalone');stateP.scrollTop=host?host.scrollTop:0;stateP.responses[id]=v;if(!stateP.telemetryTesting){if(SessionTrace.startedAt!==null&&!SessionTrace.sealed)SessionTrace.response('PROFILE-'+id,'self-report',v,{module:'UMBRAL-PERFIL-3.2'});sync();render();requestAnimationFrame(()=>{const target=document.querySelector('[data-profile-item="'+id+'"][data-profile-value="'+v+'"]');if(host)host.scrollTop=stateP.scrollTop;if(target)target.focus({preventScroll:true});});}return stateP.responseTimings[id];}
+function openBlock(i){ stateP.active=Math.max(0,Math.min(blocks.length-1,i));stateP.blockActivatedAt=profileNow();stateP.lastAnswerAt=null; render(); document.getElementById('profile-box').focus({preventScroll:true}); }
+function generateReport(){return finishPartial();}
+function finishPartial(){
+ const answered=Object.keys(stateP.responses).length+Object.keys(stateP.situational).length,total=items.length+dilemmas.length,missing=total-answered;
+ if(answered===0){notifyToast('Responde al menos una pregunta para generar un perfil parcial.',false);return false;}
+ if(missing>0&&!window.confirm(`Quedan ${missing} preguntas sin responder. Se generará un perfil parcial con las respuestas disponibles. ¿Continuar?`))return false;
+ suspendClock();stateP.partialGenerated=missing>0;stateP.generated=true;UMBRALSession.profile.snapshot=snapshot();UMBRALSession.profile.status='finished';syncDualAvailability();SessionTrace.event('profile.generated',{answered,partial:missing>0});render();return true;
+}
+function next(){const current=blocks[stateP.active];if(!blockDone(current.id)){notifyToast('Completa este bloque para continuar.',false);return false;}if(stateP.active<blocks.length-1){stateP.active++;stateP.blockActivatedAt=profileNow();stateP.lastAnswerAt=null;render();return true;}return generateReport();}
 function prev(){ if(stateP.active>0){stateP.active--;render();} }
 function calc(){const map={};items.forEach(it=>{const v=stateP.responses[it.id];if(!v)return;(map[it.d]??=[]).push(score(it,v));});const out={};Object.entries(map).forEach(([d,a])=>{const raw=a.reduce((x,y)=>x+y,0),mean=raw/a.length;out[d]={raw,mean,percent:Math.round((mean-1)/4*100),count:a.length,layer:dimensionLayer[d],normative:false};});return out;}
 function level(p){return 'Índice '+p+'/100';}
+function partialResultsMarkup(answered,pct){
+ const scores=calc(),total=items.length+dilemmas.length,available=Object.keys(scores).length;
+ return `<section class="profile-hero"><div><p class="profile-kicker">UMBRAL/PERFIL · RESULTADO PARCIAL</p><h2>Perfil psicométrico parcial</h2><p class="profile-note">Resultado descriptivo basado únicamente en las respuestas disponibles.</p></div><div class="profile-progress"><strong>${answered}/${total}</strong><span>${pct}% completado</span></div></section><section class="profile-panel profile-incomplete-warning"><h2>Cobertura incompleta</h2><p>Se han calculado ${available} dimensiones con evidencia disponible. Las dimensiones sin respuestas no se estiman.</p><div class="profile-actions"><button type="button" class="profile-secondary" onclick="UMBRALProfile.edit()">Seguir respondiendo</button><button type="button" class="profile-secondary" onclick="UMBRALProfile.download()">Exportar</button></div></section>${psychometricChartMarkup(scores)}${responseQualityMarkup()}${sourcesMarkup()}`;
+}
 function resultsMarkup(answered,pct){const scores=calc();const quality=responseQuality(); const sorted=Object.entries(scores).sort((a,b)=>b[1].percent-a[1].percent); const high=sorted.slice(0,3).map(x=>dimensionNames[x[0]]).join(', '); const watch=sorted.slice(-2).map(x=>dimensionNames[x[0]]).join(' y '); return `<section class="profile-hero"><div><p class="profile-kicker">UMBRAL/PERFIL · RESULTADO EXPERIMENTAL</p><h2>Perfil de autodescripción y preferencias profesionales</h2><p class="profile-note">Resultados descriptivos por dimensión. Sin baremo normativo ni clasificación de nivel.</p></div><div class="profile-progress"><strong>${answered}/${items.length+dilemmas.length}</strong><span>Completitud ${pct}% · Tiempo activo ${timeText(elapsed())}</span><small style="display:block;margin-top:5px;color:var(--text-muted)">El tiempo activo se registra como indicador técnico y no modifica las puntuaciones.</small></div></section><section class="profile-panel"><h2>Resumen ejecutivo</h2><p class="profile-note">Resultados descriptivos. No se comparan dimensiones entre sí ni se asignan fortalezas/debilidades sin baremo.</p><div class="profile-actions"><button type="button" class="profile-secondary" onclick="UMBRALProfile.edit()">Revisar respuestas</button><button type="button" class="profile-secondary" onclick="UMBRALProfile.download()">Exportar perfil</button>${DualContrast.ready()?'<button type="button" class="profile-secondary" onclick="launchDual()">Contraste multiescenario</button>':''}<button type="button" class="btn-finish" onclick="UMBRALProfile.printReport()">Imprimir resultado</button></div></section>${psychometricChartMarkup(scores)}${personalitySummaryMarkup(scores)}${psychometricMapMarkup(scores)}${interpretationMarkup(scores)}${multimethodMarkup(scores)}${responseQualityMarkup()}${sourcesMarkup()}${behavioralFeedbackMarkup()}`; }
-function edit(){stateP.generated=false;render();}
+function edit(){stateP.generated=false;stateP.partialGenerated=false;stateP.blockActivatedAt=profileNow();stateP.lastAnswerAt=null;resumeClock();render();return true;}
 function snapshot(){return {appVersion:APP.version,schemaVersion:APP.schemaVersion,profileSchemaVersion:'UMBRAL-PERFIL-3.2',generatedAt:new Date().toISOString(),elapsedActiveMilliseconds:Math.round(elapsed()),elapsedActiveTime:timeText(elapsed()),visibilityPauseCount:stateP.visibilityPauseCount,timingMeaning:'active-visible-time',profileSeed:stateP.profileSeed,itemResponseMilliseconds:{...stateP.responseTimings},presentationOrder:[...stateP.presentationOrder],responseOrder:[...stateP.responseOrder],responses:{...stateP.responses},situationalResponses:{...stateP.situational},situationalSummary:situationalSummary(),scores:calc(),responseQuality:responseQuality(),sources:profileSources,blocksCompleted:[...stateP.completed],linkedSimulations:linkedSimulationSummary()};}
 
 function printReport(){
@@ -5077,9 +5111,9 @@ window.addEventListener('afterprint',clean); window.print(); return true;
 }
 function download(){const text=JSON.stringify(snapshot(),null,2);return portableDownload(text,'UMBRAL_PERFIL_v'+APP.version+'_resultado.json');}
 function exportState(){return {seed:stateP.profileSeed,responses:{...stateP.responses},situational:{...stateP.situational},responseTimings:{...stateP.responseTimings},presentationOrder:[...stateP.presentationOrder],responseOrder:[...stateP.responseOrder],active:stateP.active,completed:[...stateP.completed],elapsedMs:stateP.elapsedMs,startedAt:stateP.startedAt};}
-function importState(saved={}){stateP.profileSeed=saved.seed||stateP.profileSeed;stateP.responses={...(saved.responses||{})};stateP.situational={...(saved.situational||{})};stateP.responseTimings={...(saved.responseTimings||{})};stateP.presentationOrder=Array.isArray(saved.presentationOrder)?[...saved.presentationOrder]:[];stateP.responseOrder=Array.isArray(saved.responseOrder)?[...saved.responseOrder]:[];stateP.lastAnswerAt=null;stateP.blockActivatedAt=performance.now();stateP.active=Number.isFinite(Number(saved.active))?Number(saved.active):0;stateP.completed=new Set(Array.isArray(saved.completed)?saved.completed:[]);stateP.elapsedMs=Number(saved.elapsedMs)||0;stateP.startedAt=saved.startedAt||null;stateP.timerId=null;return true;}
-function markAttention(id){if(stateP.itemOpenedAt[id]==null&&!Object.prototype.hasOwnProperty.call(stateP.responses,id))stateP.itemOpenedAt[id]=performance.now();return true;}
-return {render,markAttention,answer,answerDilemma,openBlock,next,prev,edit,download,snapshot,startClock,stopClock,resumeClock,suspendClock,handleVisibility,printReport,timeText,exportState,importState,telemetrySelfTest};
+function importState(saved={}){stateP.profileSeed=saved.seed||stateP.profileSeed;stateP.responses={...(saved.responses||{})};stateP.situational={...(saved.situational||{})};stateP.responseTimings={...(saved.responseTimings||{})};stateP.presentationOrder=Array.isArray(saved.presentationOrder)?[...saved.presentationOrder]:[];stateP.responseOrder=Array.isArray(saved.responseOrder)?[...saved.responseOrder]:[];stateP.lastAnswerAt=null;stateP.blockActivatedAt=profileNow();stateP.active=Number.isFinite(Number(saved.active))?Number(saved.active):0;stateP.completed=new Set(Array.isArray(saved.completed)?saved.completed:[]);stateP.elapsedMs=Number(saved.elapsedMs)||0;stateP.startedAt=saved.startedAt||null;stateP.timerId=null;return true;}
+function markAttention(id){stateP.focusItem=id;return true;}
+return {render,markAttention,answer,answerDilemma,openBlock,next,generateReport,finishPartial,prev,edit,download,snapshot,startClock,stopClock,resumeClock,suspendClock,handleVisibility,printReport,timeText,exportState,importState,telemetrySelfTest,profileFlowSelfTest};
 })();
 
 document.addEventListener('visibilitychange', handleAssessmentVisibility);
@@ -5108,7 +5142,7 @@ function navigationContractTest(){const a=document.querySelector(`button[onclick
 function versionCoherenceTest(){const meta=document.querySelector('meta[name="app-version"]');return {passed:!!meta&&meta.content===APP.version&&document.title.includes(APP.version),app:APP.version,meta:meta?.content||null,title:document.title};}
 function autosaveLifecycleSelfTest(){const key='UMBRAL_AUTOSAVE_SELFTEST';try{localStorage.setItem(key,'1');const stored=localStorage.getItem(key)==='1';localStorage.removeItem(key);return {passed:stored&&localStorage.getItem(key)===null};}catch(e){try{localStorage.removeItem(key);}catch(_){}return {passed:false,error:String(e)};}}
 function safeCheck(fn){try{return {passed:!!fn(),error:null};}catch(e){return {passed:false,error:String(e)};}}
-function safeRegressionGate(){const nav=navigationContractTest(),lint=itemLintReport(),balance=optionBalanceSelfTest(400),version=versionCoherenceTest(),telemetry=UMBRALProfile.telemetrySelfTest(),autosaveLifecycle=autosaveLifecycleSelfTest();const checks={version:version.passed,navigation:nav.passed,itemLengthObserved:lint.passes===true,optionBalance:balance.passes,autosave:safeCheck(()=>typeof autosaveSession==='function'&&typeof readAutosave==='function'&&typeof restoreAutosave==='function'&&typeof continueAutosave==='function'&&typeof clearAutosave==='function').passed,autosaveLifecycle:autosaveLifecycle.passed,profileTelemetry:telemetry.passed,dualMap:safeCheck(()=>typeof DualContrast!=='undefined').passed,profileSeed:safeCheck(()=>typeof UMBRALProfile.snapshot==='function').passed,structuredTrace:safeCheck(()=>typeof SessionTrace.event==='function').passed,portableExport:safeCheck(()=>typeof portableDownload==='function').passed,noDataAction:document.querySelectorAll('[data-action]').length===0};return {passed:Object.values(checks).every(Boolean),checks,version,nav,lint,balance,telemetry,autosaveLifecycle,lengthCueAdjustments:LENGTH_CUE_ADJUSTMENTS,itemLengthPass:lint.passes};}
+function safeRegressionGate(){const nav=navigationContractTest(),lint=itemLintReport(),balance=optionBalanceSelfTest(400),version=versionCoherenceTest(),telemetry=UMBRALProfile.telemetrySelfTest(),profileFlow=UMBRALProfile.profileFlowSelfTest(),autosaveLifecycle=autosaveLifecycleSelfTest();const checks={version:version.passed,navigation:nav.passed,itemLengthObserved:lint.passes===true,optionBalance:balance.passes,autosave:safeCheck(()=>typeof autosaveSession==='function'&&typeof readAutosave==='function'&&typeof restoreAutosave==='function'&&typeof continueAutosave==='function'&&typeof clearAutosave==='function').passed,autosaveLifecycle:autosaveLifecycle.passed,profileTelemetry:telemetry.passed,profileFlow:profileFlow.passed,dualMap:safeCheck(()=>typeof DualContrast!=='undefined').passed,profileSeed:safeCheck(()=>typeof UMBRALProfile.snapshot==='function').passed,structuredTrace:safeCheck(()=>typeof SessionTrace.event==='function').passed,portableExport:safeCheck(()=>typeof portableDownload==='function').passed,noDataAction:document.querySelectorAll('[data-action]').length===0};return {passed:Object.values(checks).every(Boolean),checks,version,nav,lint,balance,telemetry,profileFlow,autosaveLifecycle,lengthCueAdjustments:0,itemLengthPass:lint.passes};}
 window.addEventListener('beforeunload',e=>{if(state.sessionStarted&&!state.isFinished){e.preventDefault();e.returnValue='';}});
 window.onload = () => {const gate=safeRegressionGate();window.UMBRAL_REGRESSION_GATE=gate;console.info('UMBRAL ItemLint',gate.lint);console.info('UMBRAL NavigationContract',gate.nav);console.info('UMBRAL SafeRegressionGate',gate);document.title='UMBRAL - Simulador de perfilado humano experimental [TRIPLE '+APP.version+']';document.querySelector('meta[name=app-version]').content=APP.version;initializeAppearance();UMBRALProfile.render();syncDualAvailability();setActiveModule('portal');document.getElementById('autosave-resume-control')?.addEventListener('click',continueAutosave);document.getElementById('autosave-discard-control')?.addEventListener('click',()=>clearAutosave(false));document.addEventListener('click',e=>{if(e.target?.id==='accessible-sequence-control')showAccessibleSequence();});refreshAutosaveRecovery();};
 </script>

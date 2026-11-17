@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="app-version" content="9.0.0-alpha-p32-movil-v1">
-<meta name="evolution" content="Reescritura para moviles">
+<meta name="app-version" content="9.0.0-alpha-p33-movil-v1">
+<meta name="evolution" content="mob">
 <meta name="assessment-status" content="Experimental formative prototype; not validated for personnel selection">
-<meta name="engineering-baseline" content="RC MOBILE">
+<meta name="engineering-baseline" content="RC13.41">
 <title>UMBRAL - Simulador de perfilado humano experimental</title>
 <style>
 :root {
@@ -1432,7 +1432,7 @@ body.mode-game.scenario-apolo9 .modal-win{border-color:#789fc3;background:#0a172
 <div class="brand-block">
 <div class="brand-emblem">U7</div>
 <div class="brand-titles">
-<h1>UMBRAL 2118 // ASTER-7 (PROTOTIPO 9.0.0-alpha-p32-movil-v1)</h1>
+<h1>UMBRAL 2118 // ASTER-7 (PROTOTIPO 9.0.0-alpha-p33-movil-v1)</h1>
 <div class="brand-sub">Consorcio Umbral | Marco: <strong id="hud-method">Pendiente</strong></div>
 </div>
 </div>
@@ -4843,7 +4843,7 @@ syncTechnicalExportControls(false);
 }
 
 function attrJson(o){return JSON.stringify(o).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/</g,'&lt;');}
-const APP = Object.freeze({ name:'UMBRAL', version:'9.0.0-alpha-p32-movil-v1', schemaVersion:'4.2.0' });
+const APP = Object.freeze({ name:'UMBRAL', version:'9.0.0-alpha-p33-movil-v1', schemaVersion:'4.2.0' });
 const ReleaseInfo = Object.freeze({ application: APP.name, appVersion: APP.version, instrument: 'legacy-experimental-core16', status: 'prototype-not-validated' });
 const NarrativeUI = { ending: null };
 const OriginalEndings = Object.freeze({
@@ -6725,28 +6725,39 @@ for(const type of ['click','change','keydown','pointerdown','focus'])document.ad
 <style id="final-consolidation-style">
 .behavior-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.behavior-card{border:1px solid var(--border);border-radius:9px;background:rgba(10,18,38,.72);padding:10px}.behavior-card span,.behavior-card strong,.behavior-card small{display:block}.behavior-card span{font-size:.76rem;color:var(--text-muted)}.behavior-card strong{margin:5px 0;color:var(--accent-cyan)}.behavior-card small{font-size:.7rem;color:var(--text-muted)}.fine-print{font-size:.76rem;color:var(--text-muted);line-height:1.5}.sector-review,.regression-result{border-left:4px solid var(--warn-amber)}@media(max-width:820px){.behavior-grid{grid-template-columns:1fr}}
 
-/* v32 MÓVIL: adaptación de pantallas estrechas y apaisadas bajas, sin tocar lógica ni contenidos */
+/* v33 MÓVIL: cabecera compacta con panel desplegable, shell a pantalla completa y portal oculto durante el juego */
+body.mode-game .portal-secondary-actions{display:none!important}
+@media (max-width:1180px),(max-height:700px){.app-shell{position:fixed;top:0;left:0;right:0;bottom:0;height:auto;max-height:none}}
+#hdr-toggle{display:none}
+@media (max-width:860px),(max-height:520px){
+header{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;padding:4px 8px;max-height:46dvh;overflow-y:auto}
+header .brand-block{flex:0 0 auto;min-width:0;order:1;gap:0}
+header .brand-titles{display:none}
+header .brand-emblem{width:30px;height:30px;font-size:.6rem}
+header .hud-right{display:contents}
+header .vault-pill{order:2;padding:2px 8px;min-width:0}
+header #hud-clock{order:3;font-size:1.05rem;padding:2px 8px;min-width:0;height:auto}
+header #pause-control{order:4}
+header #hdr-toggle{display:inline-flex;order:5;margin-left:auto;align-items:center}
+header .module-switch,header #appearance-main-slot,header .reading-tools,header #btn-audio,header .timing-mode-badge,header .kpi-strip{display:none}
+header.hdr-open .module-switch,header.hdr-open #appearance-main-slot,header.hdr-open .reading-tools,header.hdr-open #btn-audio,header.hdr-open .timing-mode-badge{display:inline-flex;order:6}
+header.hdr-open .kpi-strip:not(.hidden){display:flex;order:7;flex:1 1 100%;flex-wrap:wrap}
+header.hdr-open .kpi-card{flex:1 1 90px;width:auto;min-width:0}
+}
 @media (max-width:860px){
-.app-shell{position:fixed;top:0;left:0;right:0;bottom:0;height:auto;max-height:none}
-header{padding:6px 10px;gap:6px}
-header .brand-block{min-width:0;flex:1 1 100%}
-header .hud-right{width:100%;min-width:0;flex-wrap:wrap;justify-content:flex-start;gap:5px}
-header .kpi-strip{gap:4px;padding-top:4px}
-header .kpi-card{min-width:0;width:auto;flex:1 1 70px;padding:2px 5px}
 .nav-rail{padding-bottom:max(6px,env(safe-area-inset-bottom))}
 .mail-reader-col{padding:10px 12px}
 .voice-card{padding:8px 10px;gap:8px;margin-bottom:10px}
-.vc-avatar{width:36px;height:36px}
+.vc-avatar,.vc-hps,.vc-tone{display:none}
+.vc-name-row h2{font-size:.95rem}
 .mobile-back-btn{position:sticky;top:0;z-index:2}
 }
 @media (max-height:520px) and (orientation:landscape){
-header .kpi-strip,header .brand-sub{display:none}
-header{padding:4px 10px}
-.vc-avatar,.vc-tone{display:none}
-.voice-card{padding:6px 10px;margin-bottom:8px}
+.m6-head{display:none}
 .mail-reader-col{padding:8px 12px}
 .nav-rail{width:150px}
 }
 </style>
+<script>(function(){var h=document.querySelector('.app-shell header');if(!h||document.getElementById('hdr-toggle'))return;var b=document.createElement('button');b.id='hdr-toggle';b.type='button';b.className='hud-btn';b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Mostrar u ocultar controles y indicadores');b.textContent='Panel';b.addEventListener('click',function(){var o=h.classList.toggle('hdr-open');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Cerrar':'Panel';});h.appendChild(b);})();</script>
 </body>
 </html>

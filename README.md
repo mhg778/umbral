@@ -8,9 +8,10 @@
 # UMBRAL
 
 ¿Que es UMBRAL?
+
 UMBRAL es una herramienta de perfilado profesional y humano gamificado con juegos para medir el desempeño en la dirección y gestión de proyectos cada sector.
 
-UMBRAL presenta proyectos en los que el participante debe decidir con información incompleta, recursos limitados y responsabilidades concretas. La versión 10 enlaza el cuestionario de perfil, una muestra de trabajo en BID-1 y una ficha de entrevista que identifica qué se observó y qué queda por comprobar.
+El monolito presenta proyectos en los que el participante debe decidir con información incompleta, recursos limitados y responsabilidades concretas. La versión 10 enlaza el cuestionario de perfil, una muestra de trabajo en BID-1 y una ficha de entrevista que identifica qué se observó y qué queda por comprobar.
 
 La aplicación funciona en un único fichero HTML, sin instalación ni servidor. Está destinada a formación, demostración, pruebas y revisión del diseño de la evaluación. No está validada para tomar decisiones de contratación, diagnosticar rasgos psicológicos ni clasificar personas de forma automática.
 

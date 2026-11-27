@@ -87,3 +87,4 @@ Al abrir una incidencia, indica el archivo, el navegador, el escenario, la modal
 GNU General Public License.
 
 Autor: Manuel Hernández González. Para citar el artefacto, indica el nombre del proyecto, la versión documentada y el fichero utilizado.
+UMBRAL está diseñado y dirigido por su autor. Concepto, arte, estructura, árbol de decisiones, módulos y contenido son suyos. La implementación de código se ha realizado con asistencia de IA generativa bajo su dirección supervisión y revisión. El autor es responsable del resultado.
